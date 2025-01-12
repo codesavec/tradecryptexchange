@@ -1,0 +1,31 @@
+{
+  "name": "swift",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "firebase deploy --only functions:api"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "firebase": "^10.6.0",
+    "firebase-functions": "^4.5.0",
+    "mongoose": "^8.0.0",
+    "netlify-lambda": "^2.0.16",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.7",
+    "nodemon": "^3.0.1",
+    "serverless-http": "^3.2.0"
+  },
+  "description": "",
+  "engines": {
+    "node": "18"
+  }
+}

@@ -1,0 +1,564 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+	<link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/icon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+	<link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
+	<link
+	rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="/style/style.css">
+	<link rel="stylesheet" href="/style/account.css">
+	
+	<title>tradecryptexchange.com | Dashboard</title>
+
+	<style>
+	
+table.tab {    font-size: 14px;
+    color: #ffffff;
+    width: 100%;
+    border-width: 1px;
+    border-color: #DA0014;
+    border-collapse: collapse;
+    /* font-weight: 600; */
+    font-family: sans-serif;
+    letter-spacing: 1px;}
+table.tab th {
+font-size: 14px;
+    background-color: #FF4D4D;
+    border-width: 1px;
+    padding: 14px;
+    border-style: solid;
+    border-color: #FF4D4D;
+    text-align: center;
+    color: #fff;
+    font-family: sans-serif;
+    letter-spacing: 0px;
+}
+table.tab tr {}
+table.tab td {    font-size: 14px;
+    border-width: 1px;
+    padding: 14px;
+    border-style: solid;
+	 
+    border-color: #364876;
+    background-color: #1d2948;}
+
+
+table.blank {font-size: 14px;
+    color: #000;
+    width: 100%;
+    border-width: 1px;
+    border-color: #DA0014;
+    border-collapse: collapse;
+    /* font-weight: 600; */
+    font-family: sans-serif;
+    letter-spacing:.5px;}
+table.blank th {font-size:14px;background-color:#abd28e;border-width: 0px;padding: 8px;border-style: solid;border-color: #9dcc7a;text-align:left;}
+table.blank tr {}
+table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: solid;border-color: #9dcc7a;}
+
+</style>
+</head>
+
+<body>
+	<div class="top-menu">
+		<div class="container-fluid">
+			<div class="row align-items-center">
+				
+				<div class="col-xl-2 col-md-3 col-6 border-right">
+					<a class="navbar-brand" href="/">
+						<img src="/img/logo.png" alt="tradecryptexchange.com" title="tradecryptexchange.com" >
+					</a>
+				</div>
+
+				<div class="col-xl-10 col-md-9 col-6">
+					<nav class="bg-blue-menu">
+						<div class="d-flex h-100 align-items-center">
+								<div class="menu d-flex flex-fill align-items-center justify-content-between">
+									<div class="menu-items align-items-center d-none d-lg-flex flex-fill justify-content-between">
+										<a href="/">Home</a>	
+										<a href="/arbitrage">Arbitrage</a>
+										<a href="/about_us">About us</a>
+										<a href="/news">News</a>
+										<a href="/partnership">Affiliate Program</a>
+										<a href="/help">Support</a>
+									</div>
+
+									<div class="order-xl-2 auth-items d-lg-flex d-none align-items-center">
+										<form action="/logout" method="post">
+										<%= useraccount.email  %>
+										<button class="btn-bordered">Logout</button>
+										</form>
+									</div>
+
+									<div class="order-xl-1 language-box">
+										<button class="language">EN</button>
+										<img src="/img/arrow-point.png">
+										<div class="choose-language">
+																						<a href="/ru/account/dashboard/">RU | Русский</a>										</div>
+									</div>
+									<button class="navbar-toggler d-lg-none" type="button"><span class="navbar-toggler-icon"></span></button>
+									<span class="d-none close">&times;</span>
+								</div>
+							
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="main-page">
+		<div class="container-fluid h-100">
+			<div class="row h-100">
+				<div class="col-xl-2 col-lg-3 left-menu border-right">
+					<nav class="navbar">
+	<ul class="navbar-nav">
+		<li class="nav-item"><a href="/account"><span></span> Dashboard</a></li>
+		<li class="nav-item dropdown">
+			<a class="dropdown-toggle" id="accountDropdown" role="button" data-toggle="dropdown" href="#"><span></span>Update Account</a>
+
+			<div class="dropdown-menu" aria-labelledby="accountDropdown">
+				<a class="dropdown-item" href="/edit_account">Settings</a>
+
+				<a class="dropdown-item" href="/security">Security</a>
+				</div
+			</li>
+			<li class="nav-item"><a href="/account/deposit/"><span></span>Make Deposit</a></li>
+			
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="walletDropdown" role="button" data-toggle="dropdown" ><span></span> Withdraw</a>
+
+				<div class="dropdown-menu" aria-labelledby="walletDropdown">
+				<a class="dropdown-item" href="/account/withdraw">Make Withdrawal</a>
+				 
+				<a class="dropdown-item" href="/account/withdraw_history">Withdrawal History</a>
+				</div
+			</li>
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="ordersDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Orders</a>
+
+				<div class="dropdown-menu" aria-labelledby="ordersDropdown">
+				<a class="dropdown-item" href="/deposit_list">Your orders</a>
+				<a class="dropdown-item" href="/earnings">Earnings</a>
+				</div
+			</li>
+
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="ordersDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Affiliate Program</a>
+
+				<div class="dropdown-menu" aria-labelledby="ordersDropdown">
+				<a class="dropdown-item" href="/referals">Affiliate Statistics</a>
+				<a class="dropdown-item" href="/referallinks">Promotional Tools</a>
+				</div
+			</li>
+
+		</ul>
+	</nav>				</div>
+
+				<div class="col-xl-10 col-lg-9">
+
+<h3>Dashboard</h3>
+<div class="row">
+	<div class="col-xl-12">
+		<div class="content-box"> 
+			<div class="row">
+				<div class="col-xl-3">
+					<canvas id="myBalance" width="250" height="250"></canvas>
+			 
+					<script>
+					document.addEventListener("DOMContentLoaded", function()
+					{
+						var ctx = document.getElementById('myBalance').getContext('2d');
+						var myBalance = new Chart(ctx, {
+						    type: 'doughnut',
+						    data: {
+						        labels: ['BTC', 'ETH', 'LTC', 'BCH', 'PM', 'PAYEER', 'ADV'],
+								 datasets: [{
+						            data: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00],
+						            backgroundColor: [
+						                'rgba(247, 147, 26, 0.2)',
+						                'rgba(104, 127, 227, 0.2)',
+						                'rgba(167, 167, 167, 0.2)',
+						                'rgba(141, 195, 81, 0.2)',
+						                'rgba(28, 117, 188, 0.2)',
+						                'rgba(0, 170, 228, 0.2)',
+						                'rgba(38, 161, 123, 0.2)'
+						            ],
+						            hoverBackgroundColor:
+						            [
+						            	'rgba(247, 147, 26, 0.7)',
+						                'rgba(104, 127, 227, 0.7)',
+						                'rgba(167, 167, 167, 0.7)',
+						                'rgba(141, 195, 81, 0.7)',
+						                'rgba(28, 117, 188, 0.7)',
+						                'rgba(0, 170, 228, 0.7)',
+						                'rgba(38, 161, 123, 0.7)'
+						            ],
+						            borderColor: [
+						                'rgba(247, 147, 26, 1)',
+						                'rgba(104, 127, 227, 1)',
+						                'rgba(167, 167, 167, 1)',
+						                'rgba(141, 195, 81, 1)',
+						                'rgba(28, 117, 188, 1)',
+						                'rgba(0, 170, 228, 1)',
+						                'rgba(38, 161, 123, 1)'
+						            ],
+						            borderWidth: 1
+						        }]
+						    },
+						    options: {
+						    	legend: {
+						            display: false,
+						        },
+						        tooltips: {
+						        	bodyFontSize: 14,
+						        	xPadding: 15,
+						        	yPadding: 15,
+						        	position: "nearest",
+						        	multiKeyBackground: 'rgba(0, 0, 0, 0)',
+						        	callbacks: {
+						                labelColor: function(tooltipItem, chart) {
+						                    return {
+						                        display: false
+						                    };
+						                },
+					            	}
+						        },
+						    }
+						});
+					});
+					</script>
+				</div>
+				<div class="col-xl-9 col-lg-12">
+					Current balance					<h2 class="green mb-30">$<%= useraccount.deposit + useraccount.profit  %>
+				</h2>
+
+					<div class="row">
+						<div class="col-xl-3 mb-4">
+							<div class="blue-box">
+								<span class="btc-20"></span>
+								0.00 $
+								<div class="text-muted"> </div>
+							</div>
+						</div>
+						<div class="col-xl-3 mb-4">
+							<div class="blue-box">
+								<span class="eth-20"></span>
+								0.00 $
+								<div class="text-muted"> </div>
+							</div>
+						</div>
+						<div class="col-xl-3 mb-4">
+							<div class="blue-box">
+								<span class="ltc-20"></span>
+								0.00 $
+								<div class="text-muted"> </div>
+							</div>
+						</div>
+						<div class="col-xl-3 mb-4">
+							<div class="blue-box">
+								<span class="bch-20"></span>
+								0.00 $
+								<div class="text-muted"> </div>
+							</div>
+						</div>
+						<!----
+						<div class="col-xl-3 mb-4">
+							<div class="blue-box">
+								<span class="dash-20"></span>
+								 
+								<div class="text-muted"> </div>
+							</div>
+						</div>
+						<div class="col-xl-3 mb-4">
+							<div class="blue-box">
+								<span class="xrp-20"></span>
+								0.0000 XRP
+								<div class="text-muted"> ~ 0.000000 ₿</div>
+							</div>
+						</div>
+						<div class="col-xl-3 mb-4">
+							<div class="blue-box">
+								<span class="usdt-20"></span>
+								0.0000 USDT
+								<div class="text-muted"> ~ 0.000000 ₿</div>
+						</div>
+						</div>
+						---->
+					</div>
+				<!--	You can withdraw your available balance instantly to your ecurrency wallet from fund withdrawal page.--></div>
+
+			</div>
+
+		</div>
+	</div>
+	<div class="col-xl-6">	
+		<!-- <button class="btn-fill w-100 text-center mb-3" onclick="copy()">Copy bitcoin address</button>
+		<input type="text" value="bc1qcmnr08l4h4cu7pukv9u5krjfcwcyemrntap4nf" id="myInput"> -->
+					<script>
+						function copy() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+
+  // Alert the copied text
+  alert("Copied the text: " + copyText.value);
+}
+					</script>
+
+		<div class="content-box">
+			<div class="row align-items-center ">		
+				<div class="col-xl-6 text-center"> 
+
+					<b>Deposited</b>
+					<h2>$<%= useraccount.deposit  %></h2>
+				</div>
+				<div class="col-xl-6 text-right">
+					<a class="btn-fill w-100 text-center mb-3" href="/account/deposit">Replenish</a>
+					<a class="btn-bordered w-100 text-center" href="/account/deposit_history">Replenishment History</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-6">
+		<div class="content-box">
+			<div class="row align-items-center">
+				<div class="col-xl-6 text-center">
+					<b>Withdrawn</b>
+					<h2>$0.00</h2>
+				</div>
+				<div class="col-xl-6 text-right">
+					<a class="btn-fill w-100 text-center mb-3" href="/account/withdraw">Withdraw</a>
+					<a class="btn-bordered w-100 text-center" href="/account/withdraw_history">Withdrawal History</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="col-xl-6">
+		<div class="content-box">
+			<h4>Financial Orders</h4>
+
+			<div class="row align-items-end">
+				<div class="col-xl-6 mb-xl-0 mb-md-4">
+					Last Deposit		            <div class="white-box mt-2 mb-4">
+		               $ <%= useraccount.lastdeposit  %>		            </div>
+		            <a class="btn-fill text-center" href="/account/deposit">Create deposit</a>
+				</div>
+
+				<div class="col-xl-6">
+					Last Withdrawal		            <div class="white-box mt-2">
+		               $ N/A		            </div>
+		            <a class="btn-bordered text-center mt-4 float-xl-right" href="/account/withdraw">Withdraw</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-6">
+		<div class="content-box">
+			<h4>Earning Information</h4>
+
+			<div class="row align-items-end">
+				<div class="col-xl-6 mb-xl-0 mb-md-4">
+					Earned Total	            <div class="white-box mt-2 mb-4">
+		               $<%= useraccount.profit  %>
+		            </div>
+		            <a class="btn-fill text-center" href="/account/earnings">Earnings</a> 
+		        </div>
+
+		        <div class="col-xl-6">
+		        	Active 	Deposits            <div class="white-box mt-2">
+		              $0.00
+		            </div>
+		        <a class="btn-bordered text-center mt-4 float-xl-right" href="/account/deposit_list">Your Deposits</a> 
+		        </div>
+		    </div>
+		</div>
+	</div>
+
+
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div><footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-2 col-md-3 col-12 mb-md-0 mb-4">
+				<div class="row h-100 justify-content-between">
+					<div class="col-md-12 col-6"><img src="/img/logo.png" alt="tradecryptexchange.com" title="tradecryptexchange.com"></div>
+					<div class="col-md-12 col-6 align-self-end">2024 tradecryptexchange.com.<br /> 
+					All rights reserved</div>
+				</div>
+			</div>
+
+			<div class="col-xl-10 col-md-9">
+				<div class="row">
+					<div class="col-xl-3 col-6 mb-lg-0 mb-4 links">
+						<a href="/about_us">About us</a></br>
+						<a href="/rules">Terms of use</a></br>
+						<a href="/privacy_policy">Privacy policy</a></br>
+						<a href="/cookie_policy">Cookies Policy</a>
+<br>	<a href="/risk_disclosure">Risk Disclosure</a>
+					</div>
+					
+					<div class="col-xl-3 col-6 links">
+						<a href="/faq">FAQ</a></br>
+						<a href="/help">Support Center</a></br>
+						<a href="/support">Send request</a>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+
+	</div>
+</footer>
+
+<!-- The Modal -->
+<div id="modal-box" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <strong></strong>
+    <p></p>
+  </div>
+</div>
+<!-- -->
+<!-- Slider main container -->
+<div class="swiper">
+	<!-- Additional required wrapper -->
+	<div class="swiper-wrapper">
+	  <!-- Slides -->
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (100000 - 10000) + 100000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 200000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 10000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 20000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 30000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 70000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (1000 - 4) + 100600)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 40000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (100 - 4) + 150000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 256600)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 50000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 305440)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 74003)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 2000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 80234)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 10000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 99000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 88000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 30000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 188000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (100 - 6) + 108000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 30000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (1000 - 4) + 120000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 10000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (50000 - 76) + 50000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 900) + 80000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 564) + 20000)%></div>
+	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4676) + 122800)%></div>
+
+	</div>
+	<!-- If we need pagination -->
+	
+
+<script>
+	const swiper = new Swiper('.swiper', {
+  // Optional parameters
+  
+  speed: 1000,
+  direction: 'horizontal',
+  loop: true,
+  autoplay: {
+	delay: 8000
+  },
+  slidesPerView: 1,
+  centeredSlides: true,
+  allowTouchMove: false
+});
+</script>
+<!-- Load default lang/variable -->
+<script>var scriptMsg = {'not_accepted_agreement': 'Registration is only possible after acceptance of the agreement.', 'validate_email': 'Please enter a valid email address', 'short_password': 'Password is too short - minimum password length is 8 characters', 'weak_password': 'Weak password', 'send_data_msg': 'Sending data to the server', 'rcv_data_msg': 'rcv_data_msg', 'server_error': 'Internal server error. Please try again later.', 'error': 'Houston, we have a problem'};</script>
+<!-- -->
+
+<script src="/js/jquery-3.5.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<script src="/js/base.js"></script>
+
+
+ 
+ <script src="/js/online_trading.js"></script>
+	<script src="/js/jquery.marquee.min.js"></script>
+	<script>
+		
+		$(document).ready(function() 
+		{
+			$('#partners').marquee({"duration": 30000, "css3easing": "linear", "duplicated": true, "gap": '0px', "startVisible": true});
+		});
+		
+	</script>
+	
+
+
+	<script src="/js/Chart.min.js"></script>
+	
+	
+	<script src="/js/qrcode.js"></script> 
+	<script src="/js/copy.js"></script>
+	<script src="/js/track.js"></script>
+	
+	<!----visualdep---->
+		<script src="/js/jquery.easing.1.3.js"></script>
+	<script src="/js/step_progress.js"></script>
+	<script src="/js/input_validator.js"></script> 
+	<script src="/js/form.js"></script>
+	<script src="/js/modal.js"></script>
+ 
+ 
+			<script src="/js/arbitrage.js"></script>
+	 
+<!----422---->
+<!----VisualHyip.com---->
+
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+	(function(){
+	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+	s1.async=true;
+	s1.src='https://embed.tawk.to/6588f9ce70c9f2407f832051/1hifgvk1q';
+	s1.charset='UTF-8';
+	s1.setAttribute('crossorigin','*');
+	s0.parentNode.insertBefore(s1,s0);
+	})();
+	</script>
+	<!--End of Tawk.to Script-->
+</body>
+</html>

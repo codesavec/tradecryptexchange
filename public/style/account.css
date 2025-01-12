@@ -1,0 +1,278 @@
+myBalance
+{
+	max-width:250px;
+	max-height:250px;
+}
+
+.blue-box
+{
+	background: #1111;
+	border-radius: 5px;
+	padding:10px 20px;
+	font-weight: bold;
+	color: #ffffff;
+	width:100%;
+}
+a .navbar-brand{
+  padding-top: 2rem !important;
+}
+.blue-box span
+{ 
+	float:left;
+	margin-right:10px;
+}
+
+
+.top-menu
+{
+	border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.border-right
+{
+	border-right:0px!important;
+}
+
+.border-right:after
+{
+	content:"";
+	position:absolute;
+	width:1px;
+	background:rgba(255, 255, 255, .1);
+	height:calc(100% + 40px);
+	right:0px;
+    top:-20px;
+}
+
+.left-menu
+{
+	margin-top:13px;
+	padding-bottom:12px;
+	position: relative;
+	height:auto;
+}
+
+.main-page, .sub-page 
+{
+	padding-top:0px;
+	overflow: hidden;
+}
+
+.main-page>div>div>div
+{
+	padding-top:20px;
+}
+
+.left-menu nav
+{
+	width:calc(100% + 30px);
+	margin-left:-15px;
+	padding:0px;
+}
+
+.left-menu nav .navbar-nav
+{
+	width:100%;
+}
+
+.left-menu nav li
+{
+	position:relative;
+	width:100%;
+}
+
+.left-menu nav li a
+{
+	padding:20px 25px;
+	display:flex;
+	width:100%;
+	height:100%;
+	font-weight: 500;
+font-size: 14px;
+}
+
+.left-menu nav>ul>li>a
+{
+	color:rgba(255, 255, 255, .5);
+	border-left:4px solid transparent;
+}
+
+.left-menu nav>ul>li>a:hover
+{
+	text-decoration: none;
+	background: #131C35;
+	border-left:4px solid #b29758;
+	color:#fff;
+}
+
+.left-menu nav>ul>li>a:hover span
+{
+	opacity:1;
+}
+.dropdown-menu
+{
+	background:transparent;
+	transition: all 0.5s;
+	-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    display:block;
+    max-height: 0px;
+    padding:0px;
+    padding-left:20px;
+    overflow:hidden;
+    border:0px;
+}
+
+.dropdown-toggle:after
+{
+	display:none;
+}
+
+.dropdown-menu a
+{
+	color:#fff!important;
+	border-bottom: 1px solid #303954;
+}
+
+.dropdown-menu a:hover
+{
+	background:transparent;
+	color:#b29758!important;
+	text-decoration: none;
+}
+
+.dropdown.show .dropdown-menu {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.dropdown.show .dropdown-toggle
+{
+	color:#fff;
+	background: #131C35;
+	border-left:4px solid #b29758;
+}
+
+.dropdown.show .dropdown-toggle span
+{
+	opacity:1;
+}
+
+.left-menu nav>ul>li span
+{
+	opacity:.5;
+	margin-right:20px;
+}
+
+.left-menu nav>ul>li:nth-child(1) a span {
+    width: 20px; height: 20px;
+    background: url('/img/account_menu.png') -125px -5px;
+     display:inline-block;
+}
+
+.left-menu nav>ul>li:nth-child(2) a span {
+    width: 20px; height: 20px;
+    background: url('/img/account_menu.png') -35px -5px;
+     display:inline-block;
+}
+
+.left-menu nav>ul>li:nth-child(3) a span {
+    width: 20px; height: 20px;
+    background: url('/img/account_menu.png') -5px -5px;
+    display:inline-block;
+}
+
+.left-menu nav>ul>li:nth-child(4) a span {
+    width: 20px; height: 20px;
+    background: url('/img/account_menu.png') -95px -5px;
+     display:inline-block;
+}
+
+.left-menu nav>ul>li:nth-child(5) a span {
+    width: 20px; height: 20px;
+    background: url('/img/account_menu.png') -65px -5px;
+     display:inline-block;
+}
+
+.left-menu nav>ul>li:nth-child(6) a span {
+    width: 20px; height: 20px;
+    background: url('/img/account_menu.png') -5px -35px;
+    display:inline-block;
+}
+
+ /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 25px;
+}
+
+.switch span
+{
+	margin-right:0px!important;
+}
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 21px;
+  width: 21px;
+  left:3px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #6FCF97;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #6FCF97;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(33px);
+  -ms-transform: translateX(33px);
+  transform: translateX(33px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+} 
+
+#myBalance
+{
+    background: rgba(255, 255, 255, .1);
+    border-radius: 50%;
+}
+
