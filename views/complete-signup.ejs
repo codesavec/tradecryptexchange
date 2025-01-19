@@ -88,6 +88,10 @@
 
 	</form>
 
+	<form id="signupForm" action="/complete-signup" method="POST">
+		<input type="hidden" name="token" value="<%= token %>">
+	  </form>
+
 	<div class="progress-request"></div>
 </div>
 </div>
@@ -211,28 +215,11 @@
 		
 	</script>
 	
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const urlParams = new URLSearchParams(window.location.search);
-          const token = "<%= token %>";
-            console.log(token)
-          if (token) {
-            // Send POST request to the server
-            fetch('/complete-signup', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ token }),
-            })
-              .then(response => response.json())
-              .then(data => console.log('Success:', data))
-              .catch(error => console.error('Error:', error));
-          } else {
-            console.warn('Token not found in URL');
-          }
-        });
-      </script>
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("signupForm").submit(); // Auto-submit form on page load
+  });
+</script>
 
 	<script src="/js/Chart.min.js"></script>
 	

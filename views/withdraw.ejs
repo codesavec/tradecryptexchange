@@ -247,8 +247,46 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
   </div>
 </div>
 
-<!-- -->
-<!-- The Modal -->		
+<div id="withdraw-funds-btc" class="modal">
+	<div class="modal-content text-left">
+	  <span class="close">&times;</span>
+	  <strong>Withdraw </strong>
+	  <strong id="admin-withdraw" style="color: red; display: none">Please Contact admin before withdrawal</strong>
+		  <form method=post><input type="hidden" name="form_id" value="16997978704906"><input type="hidden" name="form_token" value="73d7815784acfc960ed67ed36acd5297">
+  <input type=hidden name=a value=withdraw>
+  <input type=hidden name=action value=preview>
+  <input type=hidden name=say value="">
+   
+			  <div class="row">
+				  <div class="col-xl-5">
+					  <div>Account Balance</div>
+					  <b class="curr-balance green">$<%= useraccount.deposit + useraccount.profit %></b>
+				  </div>
+				  <div class="col-xl-7 text-right">
+					  <div>Minimum withdrawal amount</div>
+					  <b class="min-order-amount">No Limit</b>
+				  </div>
+			  </div>
+			  
+			  
+			  <label>Select Payment processor</label>
+			  <select name="ec" >
+						  <option value="1000" >Bitcoin</option>
+						  </select>
+  
+  
+			  <label>Enter the amount</label>
+			  <input type="text" name=amount value="0.00" placeholder="0.00">
+			  
+			  <label>Your Comment</label>
+			  <input type="text" name=comment value="">
+  
+			   <button class="btn-fill" onclick="WarnWithdrawal()" type="button">Withdraw</button>
+		  </form>
+		  <div class="completed"></div>
+		  <div class="progress-request"></div>
+	</div>
+  </div>
  	
 			
 

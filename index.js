@@ -158,7 +158,7 @@ app.get("/signup", (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  const { fullname, username, email, password } = req.body;
+  const { fullname, username, email, password, dob, phoneNo } = req.body;
   function generateSignupToken() {
     return Math.floor(
       100000 + (crypto.randomBytes(3).readUIntBE(0, 3) % 900000)
@@ -209,6 +209,8 @@ app.post("/signup", async (req, res) => {
       fullname,
       username,
       email,
+      dob,
+      phoneNo,
       password,
       token: signupToken,
       tokenExpires: new Date(Date.now() + 5 * 60 * 1000),
@@ -239,12 +241,13 @@ app.post("/complete-signup", async (req, res) => {
         .json({ message: "Password reset token is invalid or has expired." });
     }
     user.verified = true;
+    user.token = null;
     await user.save();
     req.flash("success", "Verified successfuly please login");
-    res.redirect("login");
+    res.redirect("/login");
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error" });
+    req.flash("error", "invalid token");
+    res.redirect("/login");
   }
 });
 app.get("/complete-signup", async (req, res) => {
