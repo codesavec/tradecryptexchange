@@ -1,0 +1,625 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+	<link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png?v=2">
+	<link rel="icon" type="image/png" sizes="96x96" href="/icon/favicon-96x96.png?v=2">
+	<link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png?v=2">
+	<link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="/style/style.css">
+	
+	<link rel="stylesheet" href="/style/account.css">
+
+	
+	<title>tradecryptexchange.com | Dashboard</title>
+	<style>
+	
+table.tab {    font-size: 14px;
+    color: #ffffff;
+    width: 100%;
+    border-width: 1px;
+    border-color: #DA0014;
+    border-collapse: collapse;
+    /* font-weight: 600; */
+    font-family: sans-serif;
+    letter-spacing: 1px;}
+table.tab th {
+font-size: 14px;
+    background-color: #FF4D4D;
+    border-width: 1px;
+    padding: 14px;
+    border-style: solid;
+    border-color: #FF4D4D;
+    text-align: center;
+    color: #fff;
+    font-family: sans-serif;
+    letter-spacing: 0px;
+}
+table.tab tr {}
+table.tab td {    font-size: 14px;
+    border-width: 1px;
+    padding: 14px;
+    border-style: solid;
+	 
+    border-color: #364876;
+    background-color: #1d2948;}
+
+
+table.blank {font-size: 14px;
+    color: #000;
+    width: 100%;
+    border-width: 1px;
+    border-color: #DA0014;
+    border-collapse: collapse;
+    /* font-weight: 600; */
+    font-family: sans-serif;
+    letter-spacing:.5px;}
+table.blank th {font-size:14px;background-color:#abd28e;border-width: 0px;padding: 8px;border-style: solid;border-color: #9dcc7a;text-align:left;}
+table.blank tr {}
+table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: solid;border-color: #9dcc7a;}
+
+</style>
+</head>
+
+<body>
+	<div class="top-menu">
+		<div class="container-fluid">
+			<div class="row align-items-center">
+				
+				<div class="col-xl-2 col-md-3 col-6 border-right">
+					<a class="navbar-brand" href="/">
+						<img src="/img/logo.png" alt="tradecryptexchange.com" title="tradecryptexchange.com" >
+					</a>
+				</div>
+
+				<div class="col-xl-10 col-md-9 col-6">
+					<nav class="bg-blue-menu">
+						<div class="d-flex h-100 align-items-center">
+								<div class="menu d-flex flex-fill align-items-center justify-content-between">
+									<div class="menu-items align-items-center d-none d-lg-flex flex-fill justify-content-between">
+										<a href="/">Home</a>	
+										<a href="/arbitrage">Arbitrage</a>
+										<a href="/about_us">About us</a>
+										<a href="/news">News</a>
+										<a href="/partnership">Affiliate Program</a>
+										<a href="/help">Support</a>
+									</div>
+
+                                    <div class="order-xl-2 auth-items d-lg-flex d-none align-items-center">
+										<form action="/logout" method="post">
+										<%= useraccount.email  %>
+										<button class="btn-bordered">Logout</button>
+										</form>
+									</div>
+								
+									<div class="order-xl-1 language-box">
+										<button class="language">EN</button>
+										<img src="/img/arrow-point.png">
+										<div class="choose-language">
+																						<a href="/ru/account/dashboard/">RU | Русский</a>										</div>
+									</div>
+									<button class="navbar-toggler d-lg-none" type="button"><span class="navbar-toggler-icon"></span></button>
+									<span class="d-none close">&times;</span>
+								</div>
+							
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="main-page">
+		<div class="container-fluid h-100">
+			<div class="row h-100">
+				<div class="col-xl-2 col-lg-3 left-menu border-right">
+					<nav class="navbar">
+	<ul class="navbar-nav">
+		<li class="nav-item"><a href="/account"><span></span> Dashboard</a></li>
+		<li class="nav-item dropdown">
+			<a class="dropdown-toggle" id="accountDropdown" role="button" data-toggle="dropdown" href="#"><span></span>Update Account</a>
+
+			<div class="dropdown-menu" aria-labelledby="accountDropdown">
+				<a class="dropdown-item" href="/edit_account">Settings</a>
+
+				<a class="dropdown-item" href="/security">Security</a>
+				</div
+			</li>
+			<li class="nav-item"><a href="/account/deposit"><span></span>Make Deposit</a></li>
+			
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="walletDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Withdraw</a>
+
+				<div class="dropdown-menu" aria-labelledby="walletDropdown">
+				<a class="dropdown-item" href="/account/withdraw">Make Withdrawal</a>
+				 
+				<a class="dropdown-item" href="/account/withdraw_history">Withdrawal History</a>
+				</div
+			</li>
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="ordersDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Orders</a>
+
+				<div class="dropdown-menu" aria-labelledby="ordersDropdown">
+				<a class="dropdown-item" href="/deposit_list">Your orders</a>
+				<a class="dropdown-item" href="/earnings">Earnings</a>
+				</div
+			</li>
+
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="ordersDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Affiliate Program</a>
+
+				<div class="dropdown-menu" aria-labelledby="ordersDropdown">
+				<a class="dropdown-item" href="/referals">Affiliate Statistics</a>
+				<a class="dropdown-item" href="/referallinks">Promotional Tools</a>
+				</div
+			</li>
+
+		</ul>
+	</nav>				</div>
+
+				<div class="col-xl-10 col-lg-9">
+
+<h3>Arbitrage Offers</h3>
+	
+	<div class="content-box">
+		<h4 class="mb-3">Which order is better?  Automated or manual?</h4>
+
+		<button class="btn-bordered" type="button" data-toggle="collapse" data-target="#which_better" aria-expanded="false" aria-controls="which_better">Let's investigate all the pros and cons of each of the orders!</button>
+
+		<div class="collapse" id="which_better">
+			<div class="row mt-4">
+				<div class="col-xl-6 mb-xl-0 mb-md-4">
+					<h4 class="mb-3">Automated order</h4>
+					<ul class="differnce">
+						<li>+ Total profitability is higher than that of a manual order (estimation for 30 days)</li>
+						<li>+ No limits on opening an order</li>
+						<li>+ Affiliate program is available</li>
+						<li>+ Daily accruals from 0.5 to 5%</li>
+						<li class="minus">- Fee for the possibility of creating an order (one-time)</li>
+					</ul>
+					<b>Brief description:</b><br>
+ 					It is designed for long-term profit; no completion term; brings profit from 0.5 to 5% daily. Affiliate program is available.				</div>
+				<div class="col-xl-6">
+					<h4 class="mb-3">Manual order</h4>
+					<ul class="differnce">
+						<li>+ No fee for order activation</li>
+						<li>+ No limits on opening an order</li>
+						<li>+ Quick order closing and profit</li>
+						<li class="minus">- The overall profitability is lower than that of an automated order (estimation for 30 days)</li>
+						<li class="minus">- Affiliate program is not available</li>
+					</ul>
+					<b>Brief description:</b><br>
+					It is designed for testing platform capabilities;  brings profit according to the chosen pair.  Affiliate program is not available.				</div>
+			</div>
+		</div>
+	</div>
+	
+<!----
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+		   	<a  data-toggle="tab" href="#automatic">Automated trading</a>
+		</li>
+		<li class="nav-item">
+		   	<a class="active" data-toggle="tab" href="#manual">Manual trading</a>
+		</li>		
+	</ul>
+	---->
+
+	<div class="tab-content">
+	<!----
+		<div class="tab-pane " id="automatic">
+			<div class="content-box">
+				Automated trading is an innovation of our company. Pay for the automation of your transactions only 1 time and enjoy obtaining guaranteed profits
+				for the whole life.				<p class="pt-2">
+				How does automated trading work?
+You need to pay a fixed fee of 0.005 BTC (once
+After payment, you will have the opportunity to create Lifelong Trading. The procedure is simple: click on the button, fill out a form, confirm, done. Our robot adds your transaction to the life cycle. You will receive a transaction report and a guaranteed daily percentage of 0.5% to 5% of the transaction amount every day.				</p>
+			</div>
+
+				<div class="row">
+					<div class="col-xl-5 col-lg-12">
+						<h3>Open a new order</h3>
+					 
+					</div>
+					<div class="col-xl-7 col-lg-12">
+						<h3>Automated Trading Online </h3>
+						<div class="content-box fixed table-responsive">
+							<table class="table" id="online-trading">
+								<thead>
+									<tr>
+										<th>Exchange</th>
+										<th>Type</th>
+										<th>Amount</th>
+										<th>Currency 1</th>
+										<th>Currency 2</th>
+										<th>Currency 3</th>
+										<th>Net profit</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="loading-trading">
+										<td colspan="7" class="text-center">Connection to the trading server</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>	
+		</div>
+---->
+		<div class="tab-pane active" id="manual">
+		
+		
+			<div class="content-box table-responsive">
+			
+
+
+<script language="javascript"><!--
+function openCalculator(id)
+{
+
+  w = 225; h = 400;
+  t = (screen.height-h-30)/2;
+  l = (screen.width-w-30)/2;
+  window.open('calendar&type=' + id, 'calculator' + id, "top="+t+",left="+l+",width="+w+",height="+h+",resizable=1,scrollbars=0");
+
+
+  
+  for (i = 0; i < document.spendform.h_id.length; i++)
+  {
+    if (document.spendform.h_id[i].value == id)
+    {
+      document.spendform.h_id[i].checked = true;
+    }
+  }
+
+  
+
+}
+
+function updateCompound() {
+  var id = 0;
+  var tt = document.spendform.h_id.type;
+  if (tt && tt.toLowerCase() == 'hidden') {
+    id = document.spendform.h_id.value;
+  } else {
+    for (i = 0; i < document.spendform.h_id.length; i++) {
+      if (document.spendform.h_id[i].checked) {
+        id = document.spendform.h_id[i].value;
+      }
+    }
+  }
+
+  var cpObj = document.getElementById('compound_percents');
+  if (cpObj) {
+    while (cpObj.options.length != 0) {
+      cpObj.options[0] = null;
+    }
+  }
+
+  if (cps[id] && cps[id].length > 0) {
+    document.getElementById('coumpond_block').style.display = '';
+
+    for (i in cps[id]) {
+      cpObj.options[cpObj.options.length] = new Option(cps[id][i]);
+    }
+  } else {
+    document.getElementById('coumpond_block').style.display = 'none';
+  }
+}
+var cps = {};
+--></script>
+
+
+
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>PLAN ID</th>
+							<th>PLAN NAME</th>
+							
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+													
+													
+						<tr>
+								<td>Plan ID: 1</td>
+								<td>STARTER</td>
+								<td><a href="javascript:openCalculator('1')">Calculate your profit &gt;&gt;</a></td>
+								<td>
+									<button class="btn-bordered" data-modal="manual-trading-BTC-1">Create order</button>
+
+									<div id="manual-trading-BTC-1" class="modal">
+									  <div class="modal-content">
+									    <span class="close">&times;</span>
+									    <strong>Open manual order</strong>
+										
+										<form method=post name="spendform"><input type="hidden" name="form_id" value="16996143811250"><input type="hidden" name="form_token" value="f1c08bfb0ce8767a76cd9566bd0df97f">
+										<input type=hidden name=a value=deposit>
+										<input type=hidden name=h_id value='1'>
+										
+												
+												<label>Balance</label>
+												<b class="curr-balance green">$0</b>
+												<a class="float-right" href="/withdraw">Replenish balance</a>
+
+												<label>Select Payment Method</label>
+												 <select name=type >
+
+   
+
+ <option value='process_1000'>Bitcoin</option>
+  
+   
+     </select>
+
+												<label>Enter transaction amount</label>
+												<input type="text" name=amount value='3000.00'>
+
+										    	<button class="btn-fill" type="submit">Create order</button>
+									   		</form>
+									   		<div class="progress-request"></div>
+									  </div>
+									</div>
+									<!-- -->
+								</td>
+							</tr>
+							<tr>
+								<td>Plan ID: 2</td>
+								<td>SILVER</td>
+								<td><a href="javascript:openCalculator('2')">Calculate your profit &gt;&gt;</a></td>
+								<td>
+									<button class="btn-bordered" data-modal="manual-trading-BTC-2">Create order</button>
+
+									<div id="manual-trading-BTC-2" class="modal">
+									  <div class="modal-content">
+									    <span class="close">&times;</span>
+									    <strong>Open manual order</strong>
+										
+										<form method=post name="spendform"><input type="hidden" name="form_id" value="16996143811250"><input type="hidden" name="form_token" value="f1c08bfb0ce8767a76cd9566bd0df97f">
+										<input type=hidden name=a value=deposit>
+										<input type=hidden name=h_id value='2'>
+										
+												
+												<label>Balance</label>
+												<b class="curr-balance green">$0</b>
+												<a class="float-right" href="/withdraw">Replenish balance</a>
+
+												<label>Select Payment Method</label>
+												 <select name=type >
+
+   
+
+ <option value='process_1000'>Bitcoin</option>
+  
+   
+     </select>
+
+												<label>Enter transaction amount</label>
+												<input type="text" name=amount value='3000.00'>
+
+										    	<button class="btn-fill" type="submit">Create order</button>
+									   		</form>
+									   		<div class="progress-request"></div>
+									  </div>
+									</div>
+									<!-- -->
+								</td>
+							</tr>
+							<tr>
+								<td>Plan ID: 3</td>
+								<td>ULTIMATE</td>
+								<td><a href="javascript:openCalculator('3')">Calculate your profit &gt;&gt;</a></td>
+								<td>
+									<button class="btn-bordered" data-modal="manual-trading-BTC-3">Create order</button>
+
+									<div id="manual-trading-BTC-3" class="modal">
+									  <div class="modal-content">
+									    <span class="close">&times;</span>
+									    <strong>Open manual order</strong>
+										
+										<form method=post name="spendform"><input type="hidden" name="form_id" value="16996143811250"><input type="hidden" name="form_token" value="f1c08bfb0ce8767a76cd9566bd0df97f">
+										<input type=hidden name=a value=deposit>
+										<input type=hidden name=h_id value='3'>
+										
+												
+												<label>Balance</label>
+												<b class="curr-balance green">$0</b>
+												<a class="float-right" href="/withdraw">Replenish balance</a>
+
+												<label>Select Payment Method</label>
+												 <select name=type >
+
+   
+
+ <option value='process_1000'>Bitcoin</option>
+  
+   
+     </select>
+
+												<label>Enter transaction amount</label>
+												<input type="text" name=amount value='3000.00'>
+
+										    	<button class="btn-fill" type="submit">Create order</button>
+									   		</form>
+									   		<div class="progress-request"></div>
+									  </div>
+									</div>
+									<!-- -->
+								</td>
+							</tr>
+														
+							 
+										 
+					</tbody>
+				</table>
+				
+<script language=javascript>
+for (i = 0; i<document.spendform.type.length; i++) {
+  if ((document.spendform.type[i].value.match(/^process_/))) {
+    document.spendform.type[i].checked = true;
+    break;
+  }
+}
+updateCompound();
+</script>
+
+
+			</div>
+		</div>
+
+	</div>
+
+ <!----
+	<div id="automatic-arb" class="modal">
+	  <div class="modal-content text-center">
+	    <span class="close">&times;</span>
+	    <strong>Enable automated trading bot</strong>
+	    	The activation cost is 0.005 BTC (one-time). You can also use other currencies.	    	<form class="mt-4"><input type="hidden" name="form_id" value="16996143811250"><input type="hidden" name="form_token" value="f1c08bfb0ce8767a76cd9566bd0df97f">
+	    		<input type="hidden" name="csrf_token" value="e549f92eed2b6c84dbb1a2b0bfd80795064f4d4e770ce29c45cfe667f5221067">
+            	<input type="hidden" name="g-recaptcha-response" value="">
+	    		<input type="hidden" name="coin" value="btc">
+		    	<div class="coins">
+		    		<div class="selector"></div>
+					<div class="coin active" data-coin="btc" data-min-order="0.005000" data-balance="0.000000">
+						<span class="btc-32"></span>
+					</div>
+					<div class="coin" data-coin="eth" data-min-order="0.2107"  data-balance="0.0000">
+						<span class="eth-32"></span>
+					</div>
+					<div class="coin" data-coin="ltc" data-min-order="0.9257"  data-balance="0.0000">
+						<span class="ltc-32"></span>
+					</div>
+					<div class="coin" data-coin="bch" data-min-order="0.1761"  data-balance="0.0000">
+						<span class="bch-32"></span>
+					</div>
+					<div class="coin" data-coin="dash" data-min-order="0.5478"  data-balance="0.0000">
+						<span class="dash-32"></span>
+					</div>
+					<div class="coin" data-coin="xrp" data-min-order="202.1644"  data-balance="0.0000">
+						<span class="xrp-32"></span>
+					</div>
+					<div class="coin" data-coin="usdt" data-min-order="44.1858"  data-balance="0.0000">
+						<span class="usdt-32"></span>
+					</div>
+				</div>
+
+				<div class="price-amount min-order-amount">0.005 BTC</div>
+				<div class="important-text">Notice! This form is not for creating an automated order, but only for activating a bot to open the possibility of creating an order.</div>
+		    	<button class="btn-fill" data-send-data-msg="Sending data to the server" data-rcv-data-msg="rcv_data_msg" data-request="/en/account/arbitrage/activate_auto_trade/" data-callback="hide:.please-activate">Enable</button>
+	   		</form>
+	   		<div class="progress-request"></div>
+	  </div>
+	</div>
+---->
+
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-2 col-md-3 col-12 mb-md-0 mb-4">
+				<div class="row h-100 justify-content-between">
+					<div class="col-md-12 col-6"><img src="/img/logo.png" alt="tradecryptexchange.com" title="tradecryptexchange.com"></div>
+					<div class="col-md-12 col-6 align-self-end">2024 tradecryptexchange.com<br /> 
+					All rights reserved</div>
+				</div>
+			</div>
+
+			<div class="col-xl-10 col-md-9">
+				<div class="row">
+					<div class="col-xl-3 col-6 mb-lg-0 mb-4 links">
+						<a href="/about_us">About us</a></br>
+						<a href="/rules">Terms of use</a></br>
+						<a href="/privacy_policy">Privacy policy</a></br>
+						<a href="/cookie_policy">Cookies Policy</a>
+<br>	<a href="/risk_disclosure">Risk Disclosure</a>
+					</div>
+					
+					<div class="col-xl-3 col-6 links">
+						<a href="/faq">FAQ</a></br>
+						<a href="/help">Support Center</a></br>
+						<a href="/support">Send request</a>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+
+	</div>
+</footer>
+
+<!-- The Modal -->
+<div id="modal-box" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <strong></strong>
+    <p></p>
+  </div>
+</div>
+<!-- -->
+
+<!-- Load default lang/variable -->
+<script>var scriptMsg = {'not_accepted_agreement': 'Registration is only possible after acceptance of the agreement.', 'validate_email': 'Please enter a valid email address', 'short_password': 'Password is too short - minimum password length is 8 characters', 'weak_password': 'Weak password', 'send_data_msg': 'Sending data to the server', 'rcv_data_msg': 'rcv_data_msg', 'server_error': 'Internal server error. Please try again later.', 'error': 'Houston, we have a problem'};</script>
+<!-- -->
+
+<script src="/js/jquery-3.5.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<script src="/js/base.js"></script>
+
+
+ 
+ <script src="/js/online_trading.js"></script>
+	<script src="/js/jquery.marquee.min.js"></script>
+	<script>
+		
+		$(document).ready(function() 
+		{
+			$('#partners').marquee({"duration": 30000, "css3easing": "linear", "duplicated": true, "gap": '0px', "startVisible": true});
+		});
+		
+	</script>
+	
+
+
+	<script src="/js/Chart.min.js"></script>
+	
+	
+	<script src="/js/qrcode.js"></script> 
+	<script src="/js/copy.js"></script>
+	<script src="/js/track.js"></script>
+	
+	<!----visualdep---->
+		<script src="/js/jquery.easing.1.3.js"></script>
+	<script src="/js/step_progress.js"></script>
+	<script src="/js/input_validator.js"></script> 
+	<script src="/js/form.js"></script>
+	<script src="/js/modal.js"></script>
+ 
+ 
+			<script src="/js/arbitrage.js"></script>
+	 
+<!----422---->
+<!----VisualHyip.com---->
+
+
+
+</body>
+</html>

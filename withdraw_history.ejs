@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+	<link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png?v=2">
+	<link rel="icon" type="image/png" sizes="96x96" href="/icon/favicon-96x96.png?v=2">
+	<link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png?v=2">
+	<link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="/style/style.css">
+	
+	
+	<title>tradecryptexchange.com | Dashboard</title>
+	<style>
+	
+table.tab {    font-size: 14px;
+    color: #ffffff;
+    width: 100%;
+    border-width: 1px;
+    border-color: #DA0014;
+    border-collapse: collapse;
+    /* font-weight: 600; */
+    font-family: sans-serif;
+    letter-spacing: 1px;}
+table.tab th {
+font-size: 14px;
+    background-color: #FF4D4D;
+    border-width: 1px;
+    padding: 14px;
+    border-style: solid;
+    border-color: #FF4D4D;
+    text-align: center;
+    color: #fff;
+    font-family: sans-serif;
+    letter-spacing: 0px;
+}
+table.tab tr {}
+table.tab td {    font-size: 14px;
+    border-width: 1px;
+    padding: 14px;
+    border-style: solid;
+	 
+    border-color: #364876;
+    background-color: #1d2948;}
+
+
+table.blank {font-size: 14px;
+    color: #000;
+    width: 100%;
+    border-width: 1px;
+    border-color: #DA0014;
+    border-collapse: collapse;
+    /* font-weight: 600; */
+    font-family: sans-serif;
+    letter-spacing:.5px;}
+table.blank th {font-size:14px;background-color:#abd28e;border-width: 0px;padding: 8px;border-style: solid;border-color: #9dcc7a;text-align:left;}
+table.blank tr {}
+table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: solid;border-color: #9dcc7a;}
+
+</style>
+</head>
+
+<body>
+	<div class="top-menu">
+		<div class="container-fluid">
+			<div class="row align-items-center">
+				
+				<div class="col-xl-2 col-md-3 col-6 border-right">
+					<a class="navbar-brand" href="/">
+						<img src="/img/logo.png" alt="tradecryptexchange.com" title="tradecryptexchange.com" >
+					</a>
+				</div>
+
+				<div class="col-xl-10 col-md-9 col-6">
+					<nav class="bg-blue-menu">
+						<div class="d-flex h-100 align-items-center">
+								<div class="menu d-flex flex-fill align-items-center justify-content-between">
+									<div class="menu-items align-items-center d-none d-lg-flex flex-fill justify-content-between">
+										<a href="/">Home</a>	
+										<a href="/arbitrage">Arbitrage</a>
+										<a href="/about_us">About us</a>
+										<a href="/news">News</a>
+										<a href="/partnership">Affiliate Program</a>
+										<a href="/help">Support</a>
+									</div>
+
+									<div class="order-xl-2 auth-items d-lg-flex d-none align-items-center">
+										<form action="/logout" method="post">
+                                            <%= useraccount.email  %>
+                                            <button class="btn-bordered">Logout</button>
+                                            </form>
+									</div>
+
+									<div class="order-xl-1 language-box">
+										<button class="language">EN</button>
+										<img src="/img/arrow-point.png">
+										<div class="choose-language">
+																						<a href="/ru/account/dashboard/">RU | Русский</a>										</div>
+									</div>
+									<button class="navbar-toggler d-lg-none" type="button"><span class="navbar-toggler-icon"></span></button>
+									<span class="d-none close">&times;</span>
+								</div>
+							
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="main-page">
+		<div class="container-fluid h-100">
+			<div class="row h-100">
+				<div class="col-xl-2 col-lg-3 left-menu border-right">
+					<nav class="navbar">
+	<ul class="navbar-nav">
+		<li class="nav-item"><a href="/account"><span></span> Dashboard</a></li>
+		<li class="nav-item dropdown">
+			<a class="dropdown-toggle" id="accountDropdown" role="button" data-toggle="dropdown" href="#"><span></span>Update Account</a>
+
+			<div class="dropdown-menu" aria-labelledby="accountDropdown">
+				<a class="dropdown-item" href="/edit_account">Settings</a>
+
+				<a class="dropdown-item" href="/security">Security</a>
+				</div
+			</li>
+			<li class="nav-item"><a href="/deposit"><span></span>Make Deposit</a></li>
+			
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="walletDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Withdraw</a>
+
+				<div class="dropdown-menu" aria-labelledby="walletDropdown">
+				<a class="dropdown-item" href="/withdraw">Make Withdrawal</a>
+				 
+				<a class="dropdown-item" href="/withdraw_history">Withdrawal History</a>
+				</div
+			</li>
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="ordersDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Orders</a>
+
+				<div class="dropdown-menu" aria-labelledby="ordersDropdown">
+				<a class="dropdown-item" href="/deposit_list">Your orders</a>
+				<a class="dropdown-item" href="/earnings">Earnings</a>
+				</div
+			</li>
+
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="ordersDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Affiliate Program</a>
+
+				<div class="dropdown-menu" aria-labelledby="ordersDropdown">
+				<a class="dropdown-item" href="/referals">Affiliate Statistics</a>
+				<a class="dropdown-item" href="/referallinks">Promotional Tools</a>
+				</div
+			</li>
+
+		</ul>
+	</nav>				</div>
+
+				<div class="col-xl-10 col-lg-9">
+
+<h3>Replenishment History</h3>
+    
+    <div class="row mb-30">
+        <div class="col-xl-3 text-center">
+            Number of replenishment            <div class="white-box mt-2">
+                0
+            </div>
+        </div>
+        <div class="col-xl-3 text-center">
+            Replenishment amount            <div class="white-box mt-2">
+                0.000000 ₿
+            </div>
+        </div>
+    </div>
+
+    <div class="content-box table-responsive">
+	
+	
+	
+<table cellspacing=0 cellpadding=0 border=0 width=100% class="tab">
+ 
+<tr>
+<form method=post name=opts><input type="hidden" name="form_id" value="16997989298499"><input type="hidden" name="form_token" value="525630570c6bc1c092a3653987b17d24">
+<input type=hidden name=a value=earnings>
+<input type=hidden name=page value=1>
+ <td>
+   <select name=type class=inpts onchange="document.opts.submit();" style="width:260px;">
+<option value="">All transactions</option>
+<option value="deposit" >Deposit</option>
+<option value="withdrawal" selected>Withdrawal</option>
+<option value="earning" >Earning</option>
+<option value="commissions" >Referral commission</option>
+   </select>
+<br><img src=images/q.gif width=1 height=4><br>
+   <select name=ec class=inpts  style="width:260px;">
+     <option value=-1>All eCurrencies</option>
+ <option value=1000 >Bitcoin</option>
+   </select>
+ </td>
+ <td align=right>
+From: <select name=month_from class=inpts  style="width:100px;">
+<option value=1 >Jan
+<option value=2 >Feb
+<option value=3 >Mar
+<option value=4 >Apr
+<option value=5 >May
+<option value=6 >Jun
+<option value=7 >Jul
+<option value=8 >Aug
+<option value=9 >Sep
+<option value=10 >Oct
+<option value=11 selected>Nov
+<option value=12 >Dec
+</select> &nbsp;
+<select name=day_from class=inpts style="width:100px;">
+<option value=1 >1
+<option value=2 >2
+<option value=3 >3
+<option value=4 >4
+<option value=5 >5
+<option value=6 >6
+<option value=7 >7
+<option value=8 >8
+<option value=9 >9
+<option value=10 selected>10
+<option value=11 >11
+<option value=12 >12
+<option value=13 >13
+<option value=14 >14
+<option value=15 >15
+<option value=16 >16
+<option value=17 >17
+<option value=18 >18
+<option value=19 >19
+<option value=20 >20
+<option value=21 >21
+<option value=22 >22
+<option value=23 >23
+<option value=24 >24
+<option value=25 >25
+<option value=26 >26
+<option value=27 >27
+<option value=28 >28
+<option value=29 >29
+<option value=30 >30
+<option value=31 >31
+</select> &nbsp;
+
+<select name=year_from class=inpts style="width:100px;">
+<option value=2018 >2018
+<option value=2019 >2019
+<option value=2020 >2020
+<option value=2021 >2021
+<option value=2022 >2022
+<option value=2023 selected>2023
+</select><br><img src=images/q.gif width=1 height=4><br>
+
+To: <select name=month_to class=inpts style="width:100px;">
+<option value=1 >Jan
+<option value=2 >Feb
+<option value=3 >Mar
+<option value=4 >Apr
+<option value=5 >May
+<option value=6 >Jun
+<option value=7 >Jul
+<option value=8 >Aug
+<option value=9 >Sep
+<option value=10 >Oct
+<option value=11 selected>Nov
+<option value=12 >Dec
+</select> &nbsp;
+<select name=day_to class=inpts style="width:100px;">
+<option value=1 >1
+<option value=2 >2
+<option value=3 >3
+<option value=4 >4
+<option value=5 >5
+<option value=6 >6
+<option value=7 >7
+<option value=8 >8
+<option value=9 >9
+<option value=10 >10
+<option value=11 >11
+<option value=12 selected>12
+<option value=13 >13
+<option value=14 >14
+<option value=15 >15
+<option value=16 >16
+<option value=17 >17
+<option value=18 >18
+<option value=19 >19
+<option value=20 >20
+<option value=21 >21
+<option value=22 >22
+<option value=23 >23
+<option value=24 >24
+<option value=25 >25
+<option value=26 >26
+<option value=27 >27
+<option value=28 >28
+<option value=29 >29
+<option value=30 >30
+<option value=31 >31
+</select> &nbsp;
+
+<select name=year_to class=inpts style="width:100px;">
+<option value=2018 >2018
+<option value=2019 >2019
+<option value=2020 >2020
+<option value=2021 >2021
+<option value=2022 >2022
+<option value=2023 selected>2023
+</select>
+
+ </td>
+ <td>
+	&nbsp; <input type=submit value="Go" class=sbmt>
+ </td>
+</tr></table>
+</form>
+<br><br>
+
+
+	<table class="tab">
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Amount</th>
+							<th>Date</th>
+							 
+						</tr>
+					</thead>
+					<tbody>
+					
+					<tr>
+ <td colspan=3 align=center><b>No transactions found</b></td>
+</tr>
+											 
+						
+						
+						
+						
+											</tbody>
+				</table>
+ 
+
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div><footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-2 col-md-3 col-12 mb-md-0 mb-4">
+				<div class="row h-100 justify-content-between">
+					<div class="col-md-12 col-6"><img src="/img/logo.png" alt="tradecryptexchange.com" title="tradecryptexchange.com"></div>
+					<div class="col-md-12 col-6 align-self-end">2024 tradecryptexchange.com<br /> 
+					All rights reserved</div>
+				</div>
+			</div>
+
+			<div class="col-xl-10 col-md-9">
+				<div class="row">
+					<div class="col-xl-3 col-6 mb-lg-0 mb-4 links">
+						<a href="/about_us">About us</a></br>
+						<a href="/rules">Terms of use</a></br>
+						<a href="/privacy_policy">Privacy policy</a></br>
+						<a href="/cookie_policy">Cookies Policy</a>
+<br>	<a href="/risk_disclosure">Risk Disclosure</a>
+					</div>
+					
+					<div class="col-xl-3 col-6 links">
+						<a href="/faq">FAQ</a></br>
+						<a href="/help">Support Center</a></br>
+						<a href="/support">Send request</a>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+
+	</div>
+</footer>
+
+<!-- The Modal -->
+<div id="modal-box" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <strong></strong>
+    <p></p>
+  </div>
+</div>
+<!-- -->
+
+<!-- Load default lang/variable -->
+<script>var scriptMsg = {'not_accepted_agreement': 'Registration is only possible after acceptance of the agreement.', 'validate_email': 'Please enter a valid email address', 'short_password': 'Password is too short - minimum password length is 8 characters', 'weak_password': 'Weak password', 'send_data_msg': 'Sending data to the server', 'rcv_data_msg': 'rcv_data_msg', 'server_error': 'Internal server error. Please try again later.', 'error': 'Houston, we have a problem'};</script>
+<!-- -->
+
+<script src="/js/jquery-3.5.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<script src="/js/base.js"></script>
+
+
+ 
+ <script src="/js/online_trading.js"></script>
+	<script src="/js/jquery.marquee.min.js"></script>
+	<script>
+		
+		$(document).ready(function() 
+		{
+			$('#partners').marquee({"duration": 30000, "css3easing": "linear", "duplicated": true, "gap": '0px', "startVisible": true});
+		});
+		
+	</script>
+	
+
+
+	<script src="/js/Chart.min.js"></script>
+	
+	
+	<script src="/js/qrcode.js"></script> 
+	<script src="/js/copy.js"></script>
+	<script src="/js/track.js"></script>
+	
+	<!----visualdep---->
+		<script src="/js/jquery.easing.1.3.js"></script>
+	<script src="/js/step_progress.js"></script>
+	<script src="/js/input_validator.js"></script> 
+	<script src="/js/form.js"></script>
+	<script src="/js/modal.js"></script>
+ 
+ 
+			<script src="/js/arbitrage.js"></script>
+	 
+<!----422---->
+<!----VisualHyip.com---->
+
+<!--Start of Tawk.to Script-->
+
+
+</body>
+</html>
