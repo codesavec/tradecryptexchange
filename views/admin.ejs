@@ -59,7 +59,6 @@
         }
 
         async function saveChanges(userId) {
-            const profit = document.querySelector(`#profit-input-${userId}`).value;
             const deposit = document.querySelector(`#deposit-input-${userId}`).value;
             const bitcoin = document.querySelector(`#bitcoin-input-${userId}`).value;
             const ethereum = document.querySelector(`#ethereum-input-${userId}`).value;
@@ -72,7 +71,6 @@
 
             const data = {
                 userId : userId,
-                profit : profit,
                 deposit : deposit,
                 bitcoin: bitcoin,
                 ethereum: ethereum,
