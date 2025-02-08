@@ -82,7 +82,7 @@ app.use((req, res, next) => {
 });
 
 // app.get('*', (req, res) => {
-//   res.redirect(301, 'https://tradecryptexchange.com' + req.originalUrl);
+//   res.redirect(301, 'https://tradecrypt.org' + req.originalUrl);
 // });
 
 app.get("/", (req, res) => {
@@ -131,7 +131,7 @@ app.post("/forgot", async (req, res) => {
       subject: "account recovery",
       text: `Click on the link below to change email address 
       
-      https://tradecryptexchange.com/change_password`,
+      https://tradecrypt.org/change_password`,
     };
 
     signupTransporter.sendMail(mailOptions, function (error, info) {
@@ -193,7 +193,7 @@ app.post("/signup", async (req, res) => {
       req.flash("error", "Username already exists");
       return res.redirect("/signup");
     }
-    const signupURL = `https://tradecryptexchange.com/complete-signup?token=${signupToken}`;
+    const signupURL = `https://tradecrypt.org/complete-signup?token=${signupToken}`;
     const mailOptions = {
       to: email,
       from: "admin@tradecrypt.org",
@@ -203,7 +203,7 @@ app.post("/signup", async (req, res) => {
           <h2>Sign Up Request</h2>
           <p>You are receiving this email to complete your signup process at Tradecryptexchange.</p>
           <p>
-            <a href="${signupURL}" style="background-color: #ffaa00; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Complete Signup</a>
+            <a href="${signupURL}" style="background-color: #605436; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Complete Signup</a>
           </p>
           <p>Or copy and paste this link into your browser: <a href="${signupURL}">${signupURL}</a></p>
           <p><strong>Thank you!</strong></p>
