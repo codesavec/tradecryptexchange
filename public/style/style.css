@@ -1,6 +1,6 @@
 /* The Modal (background) */
 .swiper {
-	position: fixed;
+	position: fixed !important;
 	padding: .3rem 0;
 	text-align: center;
 	width: 100%;

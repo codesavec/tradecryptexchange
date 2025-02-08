@@ -2,59 +2,48 @@ const express = require("express")
 const router = express.Router()
 const User = require("../models/user")
 
+const getUserFromSession = async (req, res, next) => {
+  if (!req.session.user_id) {
+    req.flash("error","You have to be logged in to access that page");
+    return res.redirect("/login"); 
+  }
+
+  try {
+    const user = await User.findById(req.session.user_id);
+    req.user = user;
+    next();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+};
+
+router.use(getUserFromSession);
+router.use((req, res, next) => {
+  res.locals.session = req.session; 
+  next();
+});
+
 
 router.get("/", async(req,res)=>{
-    const useremail = req.query.name
-    let email = res.app.get("email")   
-    const user = await User.findOne({email:email})
-    if(!req.session.user_id){
-      res.redirect("/")
-    } 
-    else{
-           res.render("dashboard",{useraccount : user})
-
-    }
-    
+      res.render("dashboard",{useraccount : req.user})
   })
 
 router.get(`/deposit`, async (req,res)=>{
-    const useremail = req.query.name
-    let email = res.app.get("email")   
-    const user = await User.findOne({email:email})
-    if(!req.session.user_id){
-      res.redirect("/")
-    } 
-    else{
-          res.render("deposit",{useraccount : user})
-    }
+       res.render("deposit",{useraccount : req.user})
 })
 
 router.get("/withdraw", async(req,res) =>{
-    const useremail = req.query.name
-    let email = res.app.get("email")   
-    const user = await User.findOne({email:email})
-    if(!req.session.user_id){
-      res.redirect("/")
-    } 
-    else{
-          res.render("withdraw",{useraccount : user})
-    }
+    
+    
+      res.render("withdraw",{useraccount : req.user})
 })
 router.get("/withdraw_history", async(req,res) =>{
-    const useremail = req.query.name
-    let email = res.app.get("email")   
-    const user = await User.findOne({email:email})
-    if(!req.session.user_id){
-      res.redirect("/")
-    } 
-    else{
-          res.render("withdraw_history",{useraccount : user})
-    }
+    
+    
+      res.render("withdraw_history",{useraccount : req.user})
 })
 router.get("/goldcheckout", async (req,res) => {
-  const useremail = req.query.name
-  let email = res.app.get("email")   
-  const user = await User.findOne({email:email})
   if(!req.session.user_id){
     res.redirect("/login")
   } 
@@ -63,9 +52,6 @@ router.get("/goldcheckout", async (req,res) => {
   }
 })
 router.get("/silvercheckout", async (req,res) => {
-  const useremail = req.query.name
-  let email = res.app.get("email")   
-  const user = await User.findOne({email:email})
   if(!req.session.user_id){
     res.redirect("/login")
   } 
@@ -74,9 +60,6 @@ router.get("/silvercheckout", async (req,res) => {
   }
 })
 router.get("/startercheckout", async (req,res) => {
-  const useremail = req.query.name
-  let email = res.app.get("email")   
-  const user = await User.findOne({email:email})
   if(!req.session.user_id){
     res.redirect("/login")
   } 
