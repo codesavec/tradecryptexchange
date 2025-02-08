@@ -60,12 +60,25 @@
 
         async function saveChanges(userId) {
             const profit = document.querySelector(`#profit-input-${userId}`).value;
-            const deposit = document.querySelector(`#deposit-input-${userId}`).value
+            const deposit = document.querySelector(`#deposit-input-${userId}`).value;
+            const bitcoin = document.querySelector(`#bitcoin-input-${userId}`).value;
+            const ethereum = document.querySelector(`#ethereum-input-${userId}`).value;
+            const litecoin = document.querySelector(`#litecoin-input-${userId}`).value;
+            const withdrawn = document.querySelector(`#withdrawn-input-${userId}`).value;
+            const usdt = document.querySelector(`#usdt-input-${userId}`).value
+
+
+
 
             const data = {
                 userId : userId,
                 profit : profit,
-                deposit : deposit
+                deposit : deposit,
+                bitcoin: bitcoin,
+                ethereum: ethereum,
+                litecoin: litecoin,
+                withdrawn: withdrawn,
+                usdt: usdt
             }
 
             try {
@@ -137,8 +150,13 @@
                 <th>Email</th>
                 <th>Phone No</th>
                 <th>DOB</th>
-                <th>Deposit</th>   
-                <th>Profit</th>              
+                <th>Deposit</th>
+                <th>bitcoin</th>
+                <th>ethereum</th>  
+                <th>litecoin</th> 
+                <th>USDT</th>
+                <th>Profit</th>
+                <th>Withdrawn</th>              
                 <th>Total</th>
                 <th>Actions</th>
                 <th></th>
@@ -157,10 +175,30 @@
                         <span class="display-<%= user._id %>"><%= user.deposit %></span>
                         <input type="number" id="deposit-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.deposit %>" style="display:none;">
                     </td>
+                    <td>
+                        <span class="display-<%= user._id %>"><%= user.bitcoin %></span>
+                        <input type="number" id="bitcoin-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.bitcoin %>" style="display:none;">
+                    </td>  
+                    <td>
+                        <span class="display-<%= user._id %>"><%= user.ethereum %></span>
+                        <input type="number" id="ethereum-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.ethereum %>" style="display:none;">
+                    </td>  
+                    <td>
+                        <span class="display-<%= user._id %>"><%= user.litecoin %></span>
+                        <input type="number" id="litecoin-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.litecoin %>" style="display:none;">
+                    </td>
+                    <td>
+                        <span class="display-<%= user._id %>"><%= user.usdt %></span>
+                        <input type="number" id="usdt-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.usdt %>" style="display:none;">
+                    </td>
                     
                     <td>
-                        <span class="display-<%= user._id %>"><%= user.profit %></span>
-                        <input type="number" id="profit-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.profit %>" style="display:none;">
+                        <span><%= user.profit %></span>
+                        <!-- <input type="number" id="profit-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.profit %>" style="display:none;"> -->
+                    </td>
+                    <td>
+                        <span class="display-<%= user._id %>"><%= user.withdrawn %></span>
+                        <input type="number" id="withdrawn-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.withdrawn %>" style="display:none;">
                     </td>
                     <td><%= user.deposit + user.profit %></td>
                     <td>

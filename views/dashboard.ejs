@@ -183,31 +183,37 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 						<div class="col-xl-3 mb-4">
 							<div class="blue-box">
 								<span class="btc-20"></span>
-								0.00 $
+								$<%= useraccount.bitcoin %>
 								<div class="text-muted"> </div>
 							</div>
 						</div>
 						<div class="col-xl-3 mb-4">
 							<div class="blue-box">
 								<span class="eth-20"></span>
-								0.00 $
+								$<%= useraccount.ethereum%>
 								<div class="text-muted"> </div>
 							</div>
 						</div>
 						<div class="col-xl-3 mb-4">
 							<div class="blue-box">
 								<span class="ltc-20"></span>
-								0.00 $
+								$<%= useraccount.litecoin %>
 								<div class="text-muted"> </div>
 							</div>
 						</div>
 						<div class="col-xl-3 mb-4">
 							<div class="blue-box">
+								<span class="usdt-20"></span>
+								$<%= useraccount.usdt %>
+								<div class="text-muted"> </div>
+						</div>
+						<!-- <div class="col-xl-3 mb-4">
+							<div class="blue-box">
 								<span class="bch-20"></span>
 								0.00 $
 								<div class="text-muted"> </div>
 							</div>
-						</div>
+						</div> -->
 						<!----
 						<div class="col-xl-3 mb-4">
 							<div class="blue-box">
@@ -223,12 +229,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 								<div class="text-muted"> ~ 0.000000 ₿</div>
 							</div>
 						</div>
-						<div class="col-xl-3 mb-4">
-							<div class="blue-box">
-								<span class="usdt-20"></span>
-								0.0000 USDT
-								<div class="text-muted"> ~ 0.000000 ₿</div>
-						</div>
+						
 						</div>
 						---->
 					</div>
@@ -278,7 +279,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 			<div class="row align-items-center">
 				<div class="col-xl-6 text-center">
 					<b>Withdrawn</b>
-					<h2>$0.00</h2>
+					<h2>$<%= useraccount.withdrawn %></h2>
 				</div>
 				<div class="col-xl-6 text-right">
 					<a class="btn-fill w-100 text-center mb-3" href="/account/withdraw">Withdraw</a>
@@ -286,7 +287,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>fbit
 
 
 	<div class="col-xl-6">

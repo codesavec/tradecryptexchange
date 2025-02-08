@@ -140,15 +140,71 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 				<div class="col-xl-3 col-lg-4">
 			<div class="content-box">
 				<div class="coin">
+					<span> <!----class="btc-32"---->  </span> <b>Total</b>
+				</div>
+				<div class="balance">
+					<b>Balance</b>
+					<strong class="green">$<%= useraccount.deposit + useraccount.profit %></strong>
+				</div>
+				<hr>
+				<div class="actions">
+					<!-- <button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button> -->
+					<button class="btn-bordered withdraw-funds" data-modal="withdraw-funds-btc" data-coin="btc">Withdraw</button>
+				</div>
+			</div>
+			<div class="content-box">
+				<div class="coin">
 					<span> <!----class="btc-32"---->  </span> <b>Bitcoin</b>
 				</div>
 				<div class="balance">
 					<b>Balance</b>
-					<strong class="green">$0.00</strong>
+					<strong class="green">$<%= useraccount.bitcoin %></strong>
 				</div>
 				<hr>
 				<div class="actions">
-					<button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button>
+					<!-- <button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button> -->
+					<button class="btn-bordered withdraw-funds" data-modal="withdraw-funds-btc" data-coin="btc">Withdraw</button>
+				</div>
+			</div>
+			<div class="content-box">
+				<div class="coin">
+					<span> <!----class="btc-32"---->  </span> <b>Ethereum</b>
+				</div>
+				<div class="balance">
+					<b>Balance</b>
+					<strong class="green">$<%= useraccount.ethereum %></strong>
+				</div>
+				<hr>
+				<div class="actions">
+					<!-- <button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button> -->
+					<button class="btn-bordered withdraw-funds" data-modal="withdraw-funds-btc" data-coin="btc">Withdraw</button>
+				</div>
+			</div>
+			<div class="content-box">
+				<div class="coin">
+					<span> <!----class="btc-32"---->  </span> <b>Litecoin</b>
+				</div>
+				<div class="balance">
+					<b>Balance</b>
+					<strong class="green">$<%= useraccount.litecoin%></strong>
+				</div>
+				<hr>
+				<div class="actions">
+					<!-- <button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button> -->
+					<button class="btn-bordered withdraw-funds" data-modal="withdraw-funds-btc" data-coin="btc">Withdraw</button>
+				</div>
+			</div>
+			<div class="content-box">
+				<div class="coin">
+					<span> <!----class="btc-32"---->  </span> <b>USDT</b>
+				</div>
+				<div class="balance">
+					<b>Balance</b>
+					<strong class="green">$<%= useraccount.usdt %></strong>
+				</div>
+				<hr>
+				<div class="actions">
+					<!-- <button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button> -->
 					<button class="btn-bordered withdraw-funds" data-modal="withdraw-funds-btc" data-coin="btc">Withdraw</button>
 				</div>
 			</div>

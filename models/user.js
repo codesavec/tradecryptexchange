@@ -42,6 +42,26 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  bitcoin:{
+    type: Number,
+    default: 0
+  },
+  ethereum: {
+    type: Number, 
+    default: 0
+  },
+  litecoin:{
+    type: Number,
+    default: 0
+  },
+  usdt: {
+    type: Number,
+    default:0
+  },
+  withdrawn:{
+    type: Number,
+    default: 0
+  },
   token: {
     type: String,
     required: false,
@@ -51,6 +71,27 @@ const UserSchema = new mongoose.Schema({
     required: false,
   },
 });
+
+UserSchema.pre("save", function (next) {
+  this.profit = Number(this.bitcoin) + Number(this.ethereum) + Number(this.litecoin) + Number(this.usdt);
+  next();
+});
+
+// Middleware to update profit when using `findOneAndUpdate`
+UserSchema.pre("findOneAndUpdate", async function (next) {
+  const update = this.getUpdate();
+  if (update.bitcoin !== undefined || update.ethereum !== undefined || update.litecoin !== undefined || update.usdt !== undefined) {
+    const user = await this.model.findOne(this.getQuery());
+    if (user) {
+      update.profit = Number(update.bitcoin ?? user.bitcoin) +
+                      Number(update.ethereum ?? user.ethereum) +
+                      Number(update.litecoin ?? user.litecoin) +
+                      Number(update.usdt ?? user.usdt);
+    }
+  }
+  next();
+});
+
 
 const User = mongoose.model("User", UserSchema);
 

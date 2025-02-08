@@ -9,9 +9,12 @@ router.use((req, res, next) => {
 });
 
 router.get("/", async (req, res) => {
-  if (!req.session.admin_id) {
+  const adminId = req.session.admin_id
+  const admin = await Admin.findById(adminId)
+  if (!admin) {
     res.redirect("/admin/login");
   } else {
+    console.log(admin)
     const users = await User.find({ verified: true });
     res.render("admin", { users });
   }
