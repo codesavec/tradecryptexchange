@@ -37,10 +37,10 @@ var transporter = nodemailer.createTransport({
 });
 
 const signupTransporter = nodemailer.createTransport({
-  host: "mail.cryptradeinvestment.com",
+  host: "mail.tradecrypt.org",
   port: 465,
   auth: {
-    user: "admin@cryptradeinvestment.com",
+    user: "no_reply@tradecrypt.org",
     pass: "f2qTDBnSouxDAsl",
   },
   tls: {
@@ -126,7 +126,7 @@ app.post("/forgot", async (req, res) => {
   const user = await User.findOne({ email: useremail });
   if (user) {
     var mailOptions = {
-      from: "admin@cryptradeinvestment.com",
+      from: "no_reply@tradecrypt.org",
       to: user.email,
       subject: "account recovery",
       text: `Click on the link below to change email address 
@@ -196,7 +196,7 @@ app.post("/signup", async (req, res) => {
     const signupURL = `https://tradecryptexchange.com/complete-signup?token=${signupToken}`;
     const mailOptions = {
       to: email,
-      from: "admin@cryptradeinvestment.com",
+      from: "admin@tradecrypt.org",
       subject: "Sign Up Request",
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.5; padding: 20px;">
