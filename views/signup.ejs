@@ -36,39 +36,8 @@
 		<title>Trade Crypt</title>
 </head>
 <body>
-	<nav class="bg-blue-menu">
-		<div class="container">
-			<div class="d-flex align-items-center justify-content-between">
-				<a class="navbar-brand" href="/">
-					<img src="/img/logo.png" alt="Trade Crypt" title="Trade Crypt" >
-				</a>
-				<div class="menu d-flex flex-fill align-items-center justify-content-end">
-					<div class="menu-items d-none d-lg-flex flex-fill justify-content-between">
-						<a href="/">Home</a>	
-						<a href="/arbitrage">Arbitrage</a>
-						<a href="/about_us">About us</a>
-						<a href="/news">News</a>
-						<a href="/partnership">Affiliate Program</a>
-						<a href="/help">Support</a>
-					</div>
+	<%- include("partials/header") %>
 
-					<div class="order-xl-2 auth-items d-lg-flex d-none align-items-center">
-													<a class="btn-bordered" href="/login">Log in</a>
-											</div>
-											
-					<div class="order-xl-1 language-box">
-						<button class="language">EN</button>
-						<img src="/img/arrow-point.png">
-						<div class="choose-language">
-														<a href="/language=ru">RU | Русский</a>						</div>
-					</div>
-					<button class="navbar-toggler d-lg-none" type="button"><span class="navbar-toggler-icon"></span></button>
-					<span class="d-none close">&times;</span>
-				</div>
-			</div>
-		</div>
-	</nav>
- 
 	<div class="sub-page">
 		<div class="container"><div class="form-box">
 	<h1 class="text-center">Sign up</h1>
@@ -226,55 +195,6 @@ function showpassword2() {
 </div>
 </div>
 </div>
-<!-- Slider main container -->
-<div class="swiper">
-	<!-- Additional required wrapper -->
-	<div class="swiper-wrapper">
-	  <!-- Slides -->
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (100000 - 10000) + 100000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 200000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 10000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 20000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 30000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 70000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (1000 - 4) + 100600)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 40000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (100 - 4) + 150000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 256600)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 50000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 305440)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 74003)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 2000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 80234)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 10000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 99000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 88000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 30000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4) + 188000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (100 - 6) + 108000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 30000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (1000 - 4) + 120000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just deposited $<%=  Math.floor(Math.random() * (100000 - 10000) + 10000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (50000 - 76) + 50000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 900) + 80000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 564) + 20000)%></div>
-	  <div class="swiper-slide">user id.<%=Math.floor(Math.random() * (1000-100)) / 100;%> just withdrew $<%=  Math.floor(Math.random() * (10000 - 4676) + 122800)%></div>
+<%- include("partials/footer") %>
+<%- include("partials/swiper") %>
 
-	</div>
-	<!-- If we need pagination -->
-	
-
-<script>
-	const swiper = new Swiper('.swiper', {
-  // Optional parameters
-  speed: 1000,
-  direction: 'horizontal',
-  loop: true,
-  autoplay: {
-	delay: 8000
-  },
-  slidesPerView: 1,
-  centeredSlides: true,
-  allowTouchMove: false
-});
-</script>

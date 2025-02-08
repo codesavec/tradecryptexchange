@@ -1,0 +1,55 @@
+
+<nav class="bg-blue-menu">
+	<div class="container">
+		<div class="d-flex align-items-center justify-content-between">
+			<a class="navbar-brand" href="/">
+				<img src="/img/logo.png" alt="Tradecryptexchange.com" title="Tradecryptexchange.com">
+			</a>
+			<div class="menu d-flex flex-fill align-items-center justify-content-end">
+				<div class="menu-items d-none d-lg-flex flex-fill justify-content-between">
+					<a href="/">Home</a>	
+					<a href="/arbitrage">Arbitrage</a>
+					<a href="/about_us">About us</a>
+					<a href="/news">News</a>
+					<a href="/partnership">Affiliate Program</a>
+					<a href="/help">Support</a>
+				</div>
+
+				<div class="order-xl-2 auth-items d-lg-flex d-none align-items-center">
+					<% if (session && session.user_id) { %>
+						<a class="btn-bordered" href="/account">Dashboard</a>
+						<div class="order-xl-2 auth-items d-lg-flex d-none align-items-center">
+							<form action="/logout" method="post">
+							<button class="btn-bordered mt-0 ml-4">Logout</button>
+							</form>
+						</div>
+					<% } else if (session && session.admin_id){%>
+						<a class="btn-bordered" href="/admin">Admin</a>
+						<div class="order-xl-2 auth-items d-lg-flex d-none align-items-center">
+							<form action="/admin/logout" method="post">
+							<button class="btn-bordered mt-0 ml-4">Logout</button>
+							</form>
+						</div>
+						<% }
+						
+						else { %>
+						<a class="btn-bordered" href="/login">Log in</a>
+						<a href="/signup">Sign up</a>
+					<% } %>
+				</div>
+
+				<div class="order-xl-1 language-box">
+					<button class="language">EN</button>
+					<img src="/img/arrow-point.png">
+					<div class="choose-language">
+						<a href="/?language=ru">RU | Русский</a>
+					</div>
+				</div>
+				<button class="navbar-toggler d-lg-none" type="button">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<span class="d-none close">&times;</span>
+			</div>
+		</div>
+	</div>
+</nav>

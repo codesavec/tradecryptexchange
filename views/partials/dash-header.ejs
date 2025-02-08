@@ -1,0 +1,46 @@
+<div class="top-menu">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            
+            <div class="col-xl-2 col-md-3 col-6 border-right">
+                <a class="navbar-brand" href="/">
+                    <img src="/img/logo.png" alt="tradecryptexchange.com" title="tradecryptexchange.com" >
+                </a>
+            </div>
+
+            <div class="col-xl-10 col-md-9 col-6">
+                <nav class="bg-blue-menu">
+                    <div class="d-flex h-100 align-items-center">
+                            <div class="menu d-flex flex-fill align-items-center justify-content-between">
+                                <div class="menu-items align-items-center d-none d-lg-flex flex-fill justify-content-between">
+                                    <a href="/">Home</a>	
+                                    <a href="/arbitrage">Arbitrage</a>
+                                    <a href="/about_us">About us</a>
+                                    <a href="/news">News</a>
+                                    <a href="/partnership">Affiliate Program</a>
+                                    <a href="/help">Support</a>
+                                </div>
+
+                                <div class="order-xl-2 auth-items d-lg-flex d-none align-items-center">
+                                    <form action="/logout" method="post">
+                                    <%= useraccount.email  %>
+                                    <button class="btn-bordered">Logout</button>
+                                    </form>
+                                </div>
+
+                                <div class="order-xl-1 language-box">
+                                    <button class="language">EN</button>
+                                    <img src="/img/arrow-point.png">
+                                    <div class="choose-language">
+                                                                                    <a href="/ru/account/dashboard/">RU | Русский</a>										</div>
+                                </div>
+                                <button class="navbar-toggler d-lg-none" type="button"><span class="navbar-toggler-icon"></span></button>
+                                <span class="d-none close">&times;</span>
+                            </div>
+                        
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

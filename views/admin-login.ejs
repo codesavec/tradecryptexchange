@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
 
@@ -9,8 +10,14 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="/icon/favicon-96x96.png?v=2">
 	<link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png?v=2">
 	<link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
-
-
+	<link
+	rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!----422---->
+<!----VisualHyip.com---->
+	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
  
 	<meta property="og:url" content="/">
@@ -29,13 +36,12 @@
 		<title>Tradecryptexchange.com</title>
 </head>
 <body>
-	<%- include("partials/swiper") %>
-
 	<%- include("partials/header") %>
 
+ 
 	<div class="sub-page">
 		<div class="container"><div class="form-box">
-	<h1 class="text-center">Log in</h1>
+	<h1 class="text-center">Admin Log in</h1>
 
 	
 	
@@ -71,18 +77,18 @@
 
 		<button class="btn-fill w-100" type="submit">Log in</button>
 	</form>
-	<a href="/forgot_password">Forgot your password?</a><br/>
-	<small>are you a new user? please <a href="/signup">sign up</a></small>
+
 	<div class="progress-request"></div>
 </div>
 </div>
 </div>
 </div>
 <%- include("partials/footer") %>
-
+<%- include("partials/swiper") %>
 
 
 <script>var scriptMsg = {'not_accepted_agreement': 'Registration is only possible after acceptance of the agreement.', 'validate_email': 'Please enter a valid email address', 'short_password': 'Password is too short - minimum password length is 8 characters', 'weak_password': 'Weak password', 'send_data_msg': 'Sending data to the server', 'rcv_data_msg': 'rcv_data_msg', 'server_error': 'Internal server error. Please try again later.', 'error': 'Houston, we have a problem'};</script>
+<!-- -->
 
 <script src="/js/jquery-3.5.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
