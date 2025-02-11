@@ -296,7 +296,7 @@ var cps = {};
 								<td>
 									<button class="btn-bordered" data-modal="manual-trading-BTC-1">Create order</button>
 
-									<div id="manual-trading-BTC-1" class="modal">
+									<div id="manual-trading-BTC-1" class="modal" >
 									  <div class="modal-content">
 									    <span class="close">&times;</span>
 									    <strong>Open manual order</strong>
@@ -328,11 +328,27 @@ var cps = {};
 												<label>Enter transaction amount</label>
 												<input type="text" name=amount value='5000.00'>
 
-										    	<button class="btn-fill" type="submit">Create order</button>
+										    	<button class="btn-fill" type="submit" data-modal="waiting-payment">Create order</button>
 									   		</form>
 									   		<div class="progress-request"></div>
 									  </div>
 									</div>
+
+
+									
+									<div id="waiting-payment" class="modal" >
+										<div class="modal-content">
+										 
+											<span class="close">&times;</span>
+											<strong>Waiting to recieve your payment</strong>
+											<strong>
+												<div class="spinner-border text-info" role="status">
+												<span class="sr-only">Loading...</span>
+											  </div>
+											</strong>
+											<p class="text-center"><a href="mailto:payment@tradecrypt.org" class="text-primary">Contact us</a> if you encounter any issue</p>
+									  </div>
+									  </div>
 									<!-- -->
 								</td>
 							</tr>
@@ -374,12 +390,25 @@ var cps = {};
 												<label>Enter transaction amount</label>
 												<input type="text" name=amount value='10000.00'>
 
-										    	<button class="btn-fill" type="submit">Create order</button>
+										    	<button class="btn-fill" type="submit" data-modal="waiting-payment-2">Create order</button>
 									   		</form>
 									   		<div class="progress-request"></div>
 									  </div>
 									</div>
 									<!-- -->
+									<div id="waiting-payment-2" class="modal" >
+										<div class="modal-content">
+										 
+											<span class="close">&times;</span>
+											<strong>Waiting to recieve your payment</strong>
+											<strong>
+												<div class="spinner-border text-info" role="status">
+												<span class="sr-only">Loading...</span>
+											  </div>
+											</strong>
+											<p class="text-center"><a href="mailto:payment@tradecrypt.org" class="text-primary">Contact us</a> if you encounter any issue</p>
+									  </div>
+									  </div>
 								</td>
 							</tr>
 							<tr>
@@ -421,12 +450,25 @@ var cps = {};
 												<label>Enter transaction amount</label>
 												<input type="text" name=amount value='15000.00'>
 
-										    	<button class="btn-fill" type="submit">Create order</button>
+										    	<button class="btn-fill" type="submit" data-modal="waiting-payment-3">Create order</button>
 									   		</form>
 									   		<div class="progress-request"></div>
 									  </div>
 									</div>
 									<!-- -->
+									<div id="waiting-payment-3" class="modal" >
+										<div class="modal-content">
+										 
+											<span class="close">&times;</span>
+											<strong>Waiting to recieve your payment</strong>
+											<strong>
+												<div class="spinner-border text-info" role="status">
+												<span class="sr-only">Loading...</span>
+											  </div>
+											</strong>
+											<p class="text-center"><a href="mailto:payment@tradecrypt.org" class="text-primary">Contact us</a> if you encounter any issue</p>
+									  </div>
+									  </div>
 								</td>
 							</tr>
 														

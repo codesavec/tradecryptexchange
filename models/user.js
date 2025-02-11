@@ -77,9 +77,15 @@ UserSchema.pre("save", function (next) {
   next();
 });
 
-// Middleware to update profit when using `findOneAndUpdate`
 UserSchema.pre("findOneAndUpdate", async function (next) {
   const update = this.getUpdate();
+  if (update.lastdeposit !== undefined) {
+    const user = await this.model.findOne(this.getQuery());
+    if (user) {
+      update.deposit = (user.deposit ?? 0) + Number(update.lastdeposit);
+    }
+  }
+
   if (update.bitcoin !== undefined || update.ethereum !== undefined || update.litecoin !== undefined || update.usdt !== undefined) {
     const user = await this.model.findOne(this.getQuery());
     if (user) {
@@ -89,9 +95,9 @@ UserSchema.pre("findOneAndUpdate", async function (next) {
                       Number(update.usdt ?? user.usdt);
     }
   }
+
   next();
 });
-
 
 const User = mongoose.model("User", UserSchema);
 

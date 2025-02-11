@@ -297,10 +297,10 @@ app.get("/support", (req, res) => {
 });
 
 app.post("/admin/update", async (req, res) => {
-  const { userId, deposit,bitcoin, ethereum, litecoin, usdt,withdrawn } = req.body;
-  console.log(req.body, userId, deposit,bitcoin, ethereum, litecoin, usdt);
+  const { userId, lastdeposit, bitcoin, ethereum, litecoin, usdt,withdrawn } = req.body;
+  console.log(req.body, userId, bitcoin, ethereum, litecoin, usdt);
   try {
-    await User.findByIdAndUpdate(userId, { deposit, bitcoin, ethereum, litecoin,usdt,withdrawn });
+    await User.findByIdAndUpdate(userId, { lastdeposit, bitcoin, ethereum, litecoin,usdt,withdrawn });
     res.redirect("/admin");
   } catch (err) {
     res.status(500).send("Error updating user");

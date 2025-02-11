@@ -59,7 +59,7 @@
         }
 
         async function saveChanges(userId) {
-            const deposit = document.querySelector(`#deposit-input-${userId}`).value;
+            const lastDeposit = document.querySelector(`#last-deposit-input-${userId}`).value;
             const bitcoin = document.querySelector(`#bitcoin-input-${userId}`).value;
             const ethereum = document.querySelector(`#ethereum-input-${userId}`).value;
             const litecoin = document.querySelector(`#litecoin-input-${userId}`).value;
@@ -71,7 +71,7 @@
 
             const data = {
                 userId : userId,
-                deposit : deposit,
+                lastdeposit: lastDeposit,
                 bitcoin: bitcoin,
                 ethereum: ethereum,
                 litecoin: litecoin,
@@ -148,7 +148,8 @@
                 <th>Email</th>
                 <th>Phone No</th>
                 <th>DOB</th>
-                <th>Deposit</th>
+                <th>Deposited</th>
+                <th>Last Deposit</th>
                 <th>bitcoin</th>
                 <th>ethereum</th>  
                 <th>litecoin</th> 
@@ -170,8 +171,11 @@
                     <td><%= user.phoneNo %></td>
                     <td><%= user.dob %></td>
                     <td>
-                        <span class="display-<%= user._id %>"><%= user.deposit %></span>
-                        <input type="number" id="deposit-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.deposit %>" style="display:none;">
+                        <%= user.deposit %>
+                    </td>
+                    <td>
+                        <span class="display-<%= user._id %>"><%= user.lastdeposit %></span>
+                        <input type="number" id="last-deposit-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.lastdeposit %>" style="display:none;">
                     </td>
                     <td>
                         <span class="display-<%= user._id %>"><%= user.bitcoin %></span>
