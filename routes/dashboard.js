@@ -4,6 +4,7 @@ const User = require("../models/user")
 
 const getUserFromSession = async (req, res, next) => {
   if (!req.session.user_id) {
+  
     req.flash("error","You have to be logged in to access that page");
     return res.redirect("/login"); 
   }

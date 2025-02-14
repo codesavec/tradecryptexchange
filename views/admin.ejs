@@ -59,44 +59,39 @@
         }
 
         async function saveChanges(userId) {
-            const lastDeposit = document.querySelector(`#last-deposit-input-${userId}`).value;
-            const bitcoin = document.querySelector(`#bitcoin-input-${userId}`).value;
-            const ethereum = document.querySelector(`#ethereum-input-${userId}`).value;
-            const litecoin = document.querySelector(`#litecoin-input-${userId}`).value;
-            const withdrawn = document.querySelector(`#withdrawn-input-${userId}`).value;
-            const usdt = document.querySelector(`#usdt-input-${userId}`).value
+            console.log("called")
+    const fields = ["lastdeposit", "bitcoin", "ethereum", "litecoin", "withdrawn", "usdt"];
+    let data = { userId }; // Always include user ID
 
-
-
-
-            const data = {
-                userId : userId,
-                lastdeposit: lastDeposit,
-                bitcoin: bitcoin,
-                ethereum: ethereum,
-                litecoin: litecoin,
-                withdrawn: withdrawn,
-                usdt: usdt
-            }
-
-            try {
-                const response = await fetch('/admin/update', {
-                    method: 'POST',
-                    headers: {
-                'Content-Type': 'application/json'
-            },
-                    body: JSON.stringify(data),
-                });
-
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    console.error('Error updating user');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
+    fields.forEach(field => {
+        const input = document.querySelector(`#${field}-input-${userId}`);
+        const originalValue = input.getAttribute("data-original-value"); // Store original value in HTML
+        if (input.value !== originalValue) {
+            data[field] = input.value; // Only send changed fields
         }
+    });
+
+    if (Object.keys(data).length === 1) {
+        console.log("No changes detected.");
+        return; // Don't send request if nothing changed
+    }
+    try {
+        const response = await fetch('/admin/update', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            console.error('Error updating user');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
         var userIdNo 
 
         async function deleteUser() {
@@ -175,23 +170,38 @@
                     </td>
                     <td>
                         <span class="display-<%= user._id %>"><%= user.lastdeposit %></span>
-                        <input type="number" id="last-deposit-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.lastdeposit %>" style="display:none;">
+                        <input type="number" id="lastdeposit-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.lastdeposit %>" style="display:none;"
+                        data-original-value="<%= user.lastdeposit %>" 
+
+                        >
                     </td>
                     <td>
                         <span class="display-<%= user._id %>"><%= user.bitcoin %></span>
-                        <input type="number" id="bitcoin-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.bitcoin %>" style="display:none;">
+                        <input type="number" id="bitcoin-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.bitcoin %>" style="display:none;"
+                        data-original-value="<%= user.bitcoin %>" 
+
+                        >
                     </td>  
                     <td>
                         <span class="display-<%= user._id %>"><%= user.ethereum %></span>
-                        <input type="number" id="ethereum-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.ethereum %>" style="display:none;">
+                        <input type="number" id="ethereum-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.ethereum %>" style="display:none;"
+                        data-original-value="<%= user.ethereum %>" 
+
+                        >
                     </td>  
                     <td>
                         <span class="display-<%= user._id %>"><%= user.litecoin %></span>
-                        <input type="number" id="litecoin-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.litecoin %>" style="display:none;">
+                        <input type="number" id="litecoin-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.litecoin %>" style="display:none;"
+                        data-original-value="<%= user.litecoin %>" 
+
+                        >
                     </td>
                     <td>
                         <span class="display-<%= user._id %>"><%= user.usdt %></span>
-                        <input type="number" id="usdt-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.usdt %>" style="display:none;">
+                        <input type="number" id="usdt-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.usdt %>" style="display:none;"
+                        data-original-value="<%= user.usdt %>" 
+
+                        >
                     </td>
                     
                     <td>
@@ -200,7 +210,10 @@
                     </td>
                     <td>
                         <span class="display-<%= user._id %>"><%= user.withdrawn %></span>
-                        <input type="number" id="withdrawn-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.withdrawn %>" style="display:none;">
+                        <input type="number" id="withdrawn-input-<%= user._id %>" class="edit-<%= user._id %>" value="<%= user.withdrawn %>" style="display:none;"
+                        data-original-value="<%= user.withdrawn %>" 
+
+                        >
                     </td>
                     <td><%= user.deposit + user.profit %></td>
                     <td>

@@ -109,8 +109,15 @@ app.post("/login", async (req, res) => {
 
   if (user && user.verified === true) {
     req.session.user_id = user._id;
-    console.log(user);
-    res.redirect(`/account`);
+    req.session.save((err) => {
+      if (err) {
+        console.error("Session save error:", err);
+        req.flash("error", "Session error. Please try again.");
+        return res.redirect("/login");
+      }
+      console.log(user)
+      res.redirect(`/account`);
+    });
   } else {
     req.flash("error", "incorrect details");
     res.redirect("/login");
@@ -269,10 +276,16 @@ app.get("/complete-signup", async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  req.session.user_id = null;
-  req.user = null;
-  res.redirect("/login");
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err);
+      return res.redirect("/account"); 
+    }
+    res.redirect("/login"); 
+  });
+  console.log("User logged out, session destroyed");
 });
+
 
 app.get("/arbitrage", (req, res) => {
   res.render("arbitrage");
@@ -298,11 +311,12 @@ app.get("/support", (req, res) => {
 
 app.post("/admin/update", async (req, res) => {
   const { userId, lastdeposit, bitcoin, ethereum, litecoin, usdt,withdrawn } = req.body;
-  console.log(req.body, userId, bitcoin, ethereum, litecoin, usdt);
+  console.log(req.body)
   try {
     await User.findByIdAndUpdate(userId, { lastdeposit, bitcoin, ethereum, litecoin,usdt,withdrawn });
     res.redirect("/admin");
   } catch (err) {
+    console.log(err)
     res.status(500).send("Error updating user");
   }
 });

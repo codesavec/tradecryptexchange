@@ -72,32 +72,29 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-UserSchema.pre("save", function (next) {
-  this.profit = Number(this.bitcoin) + Number(this.ethereum) + Number(this.litecoin) + Number(this.usdt);
-  next();
-});
-
 UserSchema.pre("findOneAndUpdate", async function (next) {
   const update = this.getUpdate();
+  const user = await this.model.findOne(this.getQuery());
+    console.log("this is ",update)
+
+  if (!user) return next(); // Exit if user is not found
+
   if (update.lastdeposit !== undefined) {
-    const user = await this.model.findOne(this.getQuery());
-    if (user) {
-      update.deposit = (user.deposit ?? 0) + Number(update.lastdeposit);
-    }
+    update.deposit = (user.deposit ?? 0) + Number(update.lastdeposit);
+  } else {
+    delete update.deposit; // Ensure deposit is not updated unless lastdeposit is provided
   }
 
   if (update.bitcoin !== undefined || update.ethereum !== undefined || update.litecoin !== undefined || update.usdt !== undefined) {
-    const user = await this.model.findOne(this.getQuery());
-    if (user) {
-      update.profit = Number(update.bitcoin ?? user.bitcoin) +
-                      Number(update.ethereum ?? user.ethereum) +
-                      Number(update.litecoin ?? user.litecoin) +
-                      Number(update.usdt ?? user.usdt);
-    }
+    update.profit = Number(update.bitcoin ?? user.bitcoin) +
+                    Number(update.ethereum ?? user.ethereum) +
+                    Number(update.litecoin ?? user.litecoin) +
+                    Number(update.usdt ?? user.usdt);
   }
 
   next();
 });
+
 
 const User = mongoose.model("User", UserSchema);
 

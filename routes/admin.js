@@ -4,6 +4,7 @@ const Admin = require("../models/admin");
 const User = require("../models/user");
 
 router.use((req, res, next) => {
+  console.log(req.session)
   res.locals.session = req.session; 
   next();
 });
@@ -25,10 +26,15 @@ router.get("/login", async (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
-  req.session.admin_id = null;
-  req.admin = null;
-  res.redirect("/admin/login");
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error ending session:", err);
+      return res.redirect("/admin/dashboard");
+    }
+    res.redirect("/admin/login");
+  });
 });
+
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -37,8 +43,14 @@ router.post("/login", async (req, res) => {
 
   if (admin) {
     req.session.admin_id = admin._id;
-    console.log(admin);
-    res.redirect(`/admin`);
+    req.session.save((err) => {
+      if (err) {
+        console.error("Session save error:", err);
+        req.flash("error", "Session error. Please try again.");
+        return res.redirect("/login");
+      }
+      res.redirect(`/admin`);
+    });
   } else {
     req.flash("error", "incorrect details");
     res.redirect("/admin/login");
