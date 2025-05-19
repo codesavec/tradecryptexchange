@@ -39,6 +39,7 @@ var transporter = nodemailer.createTransport({
 const signupTransporter = nodemailer.createTransport({
   host: "mail.tradecrypt.org",
   port: 465,
+  secure: true,
   auth: {
     user: "no_reply@tradecrypt.org",
     pass: "f2qTDBnSouxDAsl",
@@ -47,6 +48,7 @@ const signupTransporter = nodemailer.createTransport({
     rejectUnauthorized: false,
   },
 });
+
 
 app.use(
   session({
@@ -66,7 +68,7 @@ app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   next();
 });
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.raw());
 // parse text
@@ -77,7 +79,7 @@ app.set("views", path.join(__dirname, "/views"));
 app.use("/account", dashboard);
 app.use("/admin", admin);
 app.use((req, res, next) => {
-  res.locals.session = req.session; 
+  res.locals.session = req.session;
   next();
 });
 
@@ -115,7 +117,7 @@ app.post("/login", async (req, res) => {
         req.flash("error", "Session error. Please try again.");
         return res.redirect("/login");
       }
-      console.log(user)
+      console.log(user);
       res.redirect(`/account`);
     });
   } else {
@@ -203,7 +205,7 @@ app.post("/signup", async (req, res) => {
     const signupURL = `https://tradecrypt.org/complete-signup?token=${signupToken}`;
     const mailOptions = {
       to: email,
-      from: "admin@tradecrypt.org",
+      from: "no_reply@tradecrypt.org",
       subject: "Sign Up Request",
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.5; padding: 20px;">
@@ -279,13 +281,12 @@ app.post("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error("Error destroying session:", err);
-      return res.redirect("/account"); 
+      return res.redirect("/account");
     }
-    res.redirect("/login"); 
+    res.redirect("/login");
   });
   console.log("User logged out, session destroyed");
 });
-
 
 app.get("/arbitrage", (req, res) => {
   res.render("arbitrage");
@@ -310,16 +311,28 @@ app.get("/support", (req, res) => {
 });
 
 app.post("/admin/update", async (req, res) => {
-  const { userId, lastdeposit, bitcoin, ethereum, litecoin, usdt,withdrawn } = req.body;
-  console.log(req.body)
+  const { userId, lastdeposit, bitcoin, ethereum, litecoin, usdt, withdrawn } =
+    req.body;
+  console.log(req.body);
   try {
-    await User.findByIdAndUpdate(userId, { lastdeposit, bitcoin, ethereum, litecoin,usdt,withdrawn });
+    await User.findByIdAndUpdate(userId, {
+      lastdeposit,
+      bitcoin,
+      ethereum,
+      litecoin,
+      usdt,
+      withdrawn,
+    });
     res.redirect("/admin");
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).send("Error updating user");
   }
 });
+
+// Reusable email-sending function
+
+
 
 app.post("/admin/delete", async (req, res) => {
   const userId = req.body;
@@ -333,23 +346,12 @@ app.post("/admin/delete", async (req, res) => {
 });
 
 app.delete("/del/users", async (req, res) => {
-  const arrUsers = await User.find();
   try {
-    for (var user of arrUsers) {
-      user.verified = true;
-      // var userLength = arrUsers.filter(
-      //   (element) => element.username === user.username
-      // ).length;
-      // if (userLength > 1) {
-      //   var delUser = await User.deleteMany({ username: user.username });
-      //   console.log(delUser);
-      // }
-      await user.save();
-    }
-    const newUsers = await User.find();
-    res.json({ newUsers });
+    const result = await User.find(); // Delete all users where verified is false
+    res.json(result);
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    res.status(500).json({ message: "Error deleting users" });
   }
 });
 
