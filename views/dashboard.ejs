@@ -17,6 +17,7 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 	<link rel="stylesheet" href="/style/style.css">
 	<link rel="stylesheet" href="/style/account.css">
@@ -176,35 +177,56 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 					</script>
 				</div>
 				<div class="col-xl-9 col-lg-12">
-					Current balance					<h2 class="green mb-30">$<%= useraccount.deposit + useraccount.profit  %>
+					Current balance					<h2 class="green mb-30">$<%= (useraccount.deposit + useraccount.profit).toLocaleString()  %>
 				</h2>
 
 					<div class="row">
 						<div class="col-xl-3 mb-4">
 							<div class="blue-box">
 								<span class="btc-20"></span>
-								$<%= useraccount.bitcoin %>
+								<%= useraccount.rawBitcoin %>
+								<div class="text-muted"> </div>
+							</div>
+							<div class="blue-box">
+								<i class="fa fa-dollar-sign"></i>
+								<%= useraccount.bitcoin.toLocaleString() %>
 								<div class="text-muted"> </div>
 							</div>
 						</div>
 						<div class="col-xl-3 mb-4">
 							<div class="blue-box">
 								<span class="eth-20"></span>
-								$<%= useraccount.ethereum%>
+								<%= useraccount.rawEthereum %>
+								<div class="text-muted"> </div>
+							</div>
+							<div class="blue-box">
+								<i class="fa fa-dollar-sign"></i>
+								<%= useraccount.ethereum.toLocaleString() %>
 								<div class="text-muted"> </div>
 							</div>
 						</div>
+						
 						<div class="col-xl-3 mb-4">
 							<div class="blue-box">
 								<span class="ltc-20"></span>
-								$<%= useraccount.litecoin %>
+								<%= useraccount.rawLitecoin %>
+								<div class="text-muted"> </div>
+							</div>
+							<div class="blue-box">
+								<i class="fa fa-dollar-sign"></i>
+								<%= useraccount.litecoin.toLocaleString() %>
 								<div class="text-muted"> </div>
 							</div>
 						</div>
 						<div class="col-xl-3 mb-4">
 							<div class="blue-box">
 								<span class="usdt-20"></span>
-								$<%= useraccount.usdt %>
+								<%= useraccount.rawUsdt %>
+								<div class="text-muted"> </div>
+						</div>
+							<div class="blue-box">
+								<i class="fa fa-dollar-sign"></i>
+								<%= useraccount.usdt.toLocaleString() %>
 								<div class="text-muted"> </div>
 						</div>
 						<!-- <div class="col-xl-3 mb-4">
