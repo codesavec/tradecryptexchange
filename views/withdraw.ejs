@@ -148,8 +148,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 				</div>
 				<hr>
 				<div class="actions">
-					<!-- <button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button> -->
-					<button class="btn-bordered withdraw-funds" data-modal="withdraw-funds-btc" data-coin="btc">Withdraw</button>
+					<button class="btn-bordered withdraw-funds" onclick="openWithdrawModal('Bitcoin')" data-coin="btc">Withdraw</button>
 				</div>
 			</div>
 			<div class="content-box">
@@ -162,8 +161,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 				</div>
 				<hr>
 				<div class="actions">
-					<!-- <button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button> -->
-					<button class="btn-bordered withdraw-funds" data-modal="withdraw-funds-btc" data-coin="btc">Withdraw</button>
+					<button class="btn-bordered withdraw-funds" onclick="openWithdrawModal('Bitcoin')" data-coin="btc">Withdraw</button>
 				</div>
 			</div>
 			<div class="content-box">
@@ -176,8 +174,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 				</div>
 				<hr>
 				<div class="actions">
-					<!-- <button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button> -->
-					<button class="btn-bordered withdraw-funds" data-modal="withdraw-funds-btc" data-coin="btc">Withdraw</button>
+					<button class="btn-bordered withdraw-funds" onclick="openWithdrawModal('Ethereum')" data-coin="eth">Withdraw</button>
 				</div>
 			</div>
 			<div class="content-box">
@@ -190,8 +187,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 				</div>
 				<hr>
 				<div class="actions">
-					<!-- <button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button> -->
-					<button class="btn-bordered withdraw-funds" data-modal="withdraw-funds-btc" data-coin="btc">Withdraw</button>
+					<button class="btn-bordered withdraw-funds" onclick="openWithdrawModal('Litecoin')" data-coin="ltc">Withdraw</button>
 				</div>
 			</div>
 			<div class="content-box">
@@ -204,31 +200,130 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 				</div>
 				<hr>
 				<div class="actions">
-					<!-- <button class="btn-fill deposit-funds" onclick="window.location.href = 'edit_account';" >Update</button> -->
-					<button class="btn-bordered withdraw-funds" data-modal="withdraw-funds-btc" data-coin="btc">Withdraw</button>
+					<button class="btn-bordered withdraw-funds" onclick="openWithdrawModal('USDT')" data-coin="usdt">Withdraw</button>
 				</div>
 			</div>
 		</div>
 			
 <script>
-	function WarnWithdrawal(){
-     const warndisplay = document.getElementById("admin-withdraw")
-	 warndisplay.style.display = "block"
+	function WarnWithdrawal() {
+		const warndisplay = document.getElementById("admin-withdraw");
+		warndisplay.style.display = "block";
+	}
+
+	// Dynamically update the payment processor in the modal
+	function openWithdrawModal(coin) {
+		const modal = document.getElementById("withdraw-funds-btc");
+		const paymentProcessorSelect = modal.querySelector("select[name='ec']");
+		paymentProcessorSelect.innerHTML = `<option value="${coin}">${coin}</option>`;
+		modal.querySelector("input[name='coin']").value = coin; // Set hidden coin input
+		modal.style.display = "block";
+	}
+
+	// Close modal functionality
+	document.querySelectorAll(".modal .close").forEach(closeBtn => {
+		closeBtn.addEventListener("click", () => {
+			closeBtn.closest(".modal").style.display = "none";
+		});
+	});
+
+	// Show processing modal
+	function showProcessingModal() {
+		const modal = document.getElementById("processing-modal");
+		modal.style.display = "flex";
+	}
+
+	// Hide processing modal
+	function hideProcessingModal() {
+		const modal = document.getElementById("processing-modal");
+		modal.style.display = "none";
+	}
+
+	// Show response modal
+	function showResponseModal(message) {
+		const modal = document.getElementById("response-modal");
+		const messageElement = document.getElementById("response-message");
+		messageElement.textContent = message;
+		modal.style.display = "flex";
+	}
+
+	// Close response modal and refresh the page
+	function closeResponseModal() {
+		const modal = document.getElementById("response-modal");
+		modal.style.display = "none";
+		location.reload(); // Refresh the page
+	}
+
+	// Handle withdrawal form submission
+	function submitWithdrawalForm() {
+		const modal = document.getElementById("withdraw-funds-btc");
+		const amount = modal.querySelector("input[name='amount']").value;
+		const coin = modal.querySelector("input[name='coin']").value.toLowerCase();
+		const walletAddress = modal.querySelector("input[name='wallet_address']").value;
+
+		// Show processing modal
+		showProcessingModal();
+
+		fetch('/account/withdraw', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ amount, coin, wallet_address: walletAddress }),
+		})
+		.then(response => response.json())
+		.then(data => {
+			// Hide processing modal
+			hideProcessingModal();
+
+			// Show response modal with success or failure message
+			if (data.success) {
+				showResponseModal('Withdrawal request submitted successfully.');
+			} else {
+				showResponseModal(data.message || 'Withdrawal request failed. Please try again.');
+			}
+		})
+		.catch(error => {
+			// Hide processing modal
+			hideProcessingModal();
+
+			// Show response modal with error message
+			showResponseModal('An error occurred. Please try again.');
+			console.error('Error:', error);
+		});
 	}
 </script>
-	 
+
+<!-- Processing Modal -->
+<div id="processing-modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+	<div style="background: #fff; padding: 20px; border-radius: 5px; text-align: center;">
+		<div class="spinner-border text-primary" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+		<div class="text-dark">
+		<p>Processing your withdrawal request...</p>
+		<p>Please wait</p>	
+		</div>
+		
+	</div>
+</div>
+
+<!-- Response Modal -->
+<div id="response-modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+	<div style="background: #fff; padding: 20px; border-radius: 5px; text-align: center;">
+		<p id="response-message" class="text-dark"></p>
+		<button class="btn btn-primary" onclick="closeResponseModal()">Close</button>
+	</div>
+</div>
 
 <div id="withdraw-funds-btc" class="modal">
   <div class="modal-content text-left">
     <span class="close">&times;</span>
     <strong>Withdraw </strong>
 	<strong id="admin-withdraw" style="color: red; display: none">Please Contact admin before withdrawal</strong>
-    	<form method=post><input type="hidden" name="form_id" value="16997978704906"><input type="hidden" name="form_token" value="73d7815784acfc960ed67ed36acd5297">
-<input type=hidden name=a value=withdraw>
-<input type=hidden name=action value=preview>
-<input type=hidden name=say value="">
- 
-    		<div class="row">
+    		<form onsubmit="event.preventDefault(); submitWithdrawalForm();">
+			<input type="hidden" name="coin" value="">
+			<div class="row">
     			<div class="col-xl-5">
     				<div>Account Balance</div>
 					<b class="curr-balance green">$<%= useraccount.deposit + useraccount.profit %></b>
@@ -241,64 +336,26 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
     		
 			
 			<label>Select Payment processor</label>
-			<select name="ec" >
-						<option value="1000" >Bitcoin</option>
-						</select>
+			<select name="ec" disabled>
+				<option value="1000">Bitcoin</option>
+			</select>
 
 
 			<label>Enter the amount</label>
-			<input type="text" name=amount value="0.00" placeholder="0.00">
+			<input type="text" name="amount" value="0.00" placeholder="0.00">
+
+			<label>Enter your wallet address</label>
+			<input type="text" name="wallet_address" placeholder="Enter your wallet address">
 			
 			<label>Your Comment</label>
-			<input type="text" name=comment value="">
+			<input type="text" name="comment" value="">
 
-			 <button class="btn-fill" onclick="WarnWithdrawal()" type="button">Withdraw</button>
+			 <button class="btn-fill" type="submit">Withdraw</button>
     	</form>
     	<div class="completed"></div>
     	<div class="progress-request"></div>
   </div>
 </div>
-
-<div id="withdraw-funds-btc" class="modal">
-	<div class="modal-content text-left">
-	  <span class="close">&times;</span>
-	  <strong>Withdraw </strong>
-	  <strong id="admin-withdraw" style="color: red; display: none">Please Contact admin before withdrawal</strong>
-		  <form method=post><input type="hidden" name="form_id" value="16997978704906"><input type="hidden" name="form_token" value="73d7815784acfc960ed67ed36acd5297">
-  <input type=hidden name=a value=withdraw>
-  <input type=hidden name=action value=preview>
-  <input type=hidden name=say value="">
-   
-			  <div class="row">
-				  <div class="col-xl-5">
-					  <div>Account Balance</div>
-					  <b class="curr-balance green">$<%= useraccount.deposit + useraccount.profit %></b>
-				  </div>
-				  <div class="col-xl-7 text-right">
-					  <div>Minimum withdrawal amount</div>
-					  <b class="min-order-amount">No Limit</b>
-				  </div>
-			  </div>
-			  
-			  
-			  <label>Select Payment processor</label>
-			  <select name="ec" >
-						  <option value="1000" >Bitcoin</option>
-						  </select>
-  
-  
-			  <label>Enter the amount</label>
-			  <input type="text" name=amount value="0.00" placeholder="0.00">
-			  
-			  <label>Your Comment</label>
-			  <input type="text" name=comment value="">
-  
-			   <button class="btn-fill" onclick="WarnWithdrawal()" type="button">Withdraw</button>
-		  </form>
-		  <div class="completed"></div>
-		  <div class="progress-request"></div>
-	</div>
-  </div>
  	
 			
 
