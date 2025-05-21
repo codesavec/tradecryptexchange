@@ -132,7 +132,7 @@ router.post("/withdraw", async (req, res) => {
   const coinUsdPrice = priceRes.data[coingeckoId].usd;
 
   cryptoAmount = amount / coinUsdPrice;
-  cryptoAmount = cryptoAmount.toFixed(2);
+  cryptoAmount = cryptoAmount;
 
   const userBalance = req.user[coin]; // Assuming `balances` is an object in the user schema with coin names as keys
   if (!userBalance || userBalance < amount) {
@@ -178,7 +178,7 @@ router.post("/withdraw", async (req, res) => {
     await user.save();
 
     console.log("mails sent successfully");
-    res.json({ message: "Withdrawal request successfull, Check your mail" });
+    res.json({ message: "Withdrawal request successfull, Check your email" });
   } catch (error) {
     console.error("Error sending emails:", error);
     res
