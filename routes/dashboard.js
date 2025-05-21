@@ -178,7 +178,7 @@ router.post("/withdraw", async (req, res) => {
     await user.save();
 
     console.log("mails sent successfully");
-    res.json({ message: "Emails sent successfully" });
+    res.json({ message: "Withdrawal request successfull, Check your mail" });
   } catch (error) {
     console.error("Error sending emails:", error);
     res
