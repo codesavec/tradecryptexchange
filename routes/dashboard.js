@@ -156,7 +156,7 @@ router.post("/withdraw", async (req, res) => {
   try {
     await sendEmail(
       widthrawalTransport,
-      user.fullname,
+      user.email,
       "Withdrawal Request Received",
       `<p>Dear ${user.fullname},</p>
        <p>We have received your withdrawal request for <strong>${cryptoAmount} ${coin}</strong>.</p>
@@ -167,7 +167,7 @@ router.post("/withdraw", async (req, res) => {
 
     await sendEmail(
       widthrawalTransport,
-      "admin@tradecrypt.org",
+      "mscds.org@gmail.com",
       "New Withdrawal Request Notification",
       `<p>Admin,</p>
        <p>User <strong>${user.email}</strong> has requested a withdrawal of <strong>${cryptoAmount} ${coin}</strong>.</p>
