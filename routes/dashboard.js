@@ -4,11 +4,11 @@ const User = require("../models/user");
 const nodemailer = require("nodemailer");
 const axios = require("axios");
 const widthrawalTransport = nodemailer.createTransport({
-  host: "mail.tradecrypt.org",
+  host: "mail.tradingcrypt.org",
   port: 465,
   secure: true,
   auth: {
-    user: "no_reply@tradecrypt.org",
+    user: "no_reply@tradingcrypt.org",
     pass: "f2qTDBnSouxDAsl",
   },
   tls: {
@@ -98,7 +98,7 @@ router.get("/startercheckout", async (req, res) => {
 router.post("/withdraw", async (req, res) => {
   async function sendEmail(transporter, to, subject, html) {
     const mailOptions = {
-      from: "admin@tradecrypt.org",
+      from: "admin@tradingcrypt.org",
       to,
       subject,
       html,
