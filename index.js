@@ -37,11 +37,11 @@ var transporter = nodemailer.createTransport({
 });
 
 const signupTransporter = nodemailer.createTransport({
-  host: "mail.tradecrypt.org",
+  host: "mail.tradingcrypt.org",
   port: 465,
   secure: true,
   auth: {
-    user: "no_reply@tradecrypt.org",
+    user: "no_reply@tradingcrypt.org",
     pass: "f2qTDBnSouxDAsl",
   },
   tls: {
@@ -84,7 +84,7 @@ app.use((req, res, next) => {
 });
 
 // app.get('*', (req, res) => {
-//   res.redirect(301, 'https://tradecrypt.org' + req.originalUrl);
+//   res.redirect(301, 'https://tradingcrypt.org' + req.originalUrl);
 // });
 
 app.get("/", (req, res) => {
@@ -135,12 +135,12 @@ app.post("/forgot", async (req, res) => {
   const user = await User.findOne({ email: useremail });
   if (user) {
     var mailOptions = {
-      from: "no_reply@tradecrypt.org",
+      from: "no_reply@tradingcrypt.org",
       to: user.email,
       subject: "account recovery",
       text: `Click on the link below to change email address 
       
-      https://tradecrypt.org/change_password`,
+      https://tradingcrypt.org/change_password`,
     };
 
     signupTransporter.sendMail(mailOptions, function (error, info) {
@@ -202,10 +202,10 @@ app.post("/signup", async (req, res) => {
       req.flash("error", "Username already exists");
       return res.redirect("/signup");
     }
-    const signupURL = `https://tradecrypt.org/complete-signup?token=${signupToken}`;
+    const signupURL = `https://tradingcrypt.org/complete-signup?token=${signupToken}`;
     const mailOptions = {
       to: email,
-      from: "no_reply@tradecrypt.org",
+      from: "no_reply@tradingcrypt.org",
       subject: "Sign Up Request",
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.5; padding: 20px;">
