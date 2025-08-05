@@ -11,9 +11,10 @@ var session = require("express-session");
 const dashboard = require("./routes/dashboard");
 const admin = require("./routes/admin");
 const crypto = require("crypto");
+const dotenv = require("dotenv");
+dotenv.config();
 
-const dbURL =
-  "mongodb+srv://donaldmiller5409:FwVTWmdHr66X9xER@cluster0.8cadu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const dbURL = process.env.DB_URL || "mongodb://localhost:27017/tradingcrypt";
 const MongoDBStore = require("connect-mongo");
 mongoose
   .connect(dbURL, {
@@ -41,8 +42,8 @@ const signupTransporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "no_reply@tradingcrypt.org",
-    pass: "f2qTDBnSouxDAsl",
+    user: process.env.norepMail,
+    pass: process.env.norepPass,
   },
   tls: {
     rejectUnauthorized: false,
@@ -356,5 +357,5 @@ app.delete("/del/users", async (req, res) => {
 });
 
 app.listen(4000, () => {
-  console.log("Listening");
+  console.log("Listening on");
 });

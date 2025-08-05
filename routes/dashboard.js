@@ -8,8 +8,8 @@ const widthrawalTransport = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "no_reply@tradingcrypt.org",
-    pass: "f2qTDBnSouxDAsl",
+    user: process.env.norepMail,
+    pass: process.env.norepPass
   },
   tls: {
     rejectUnauthorized: false,
