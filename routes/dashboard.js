@@ -9,7 +9,7 @@ const widthrawalTransport = nodemailer.createTransport({
   secure: true,
   auth: {
     user: process.env.norepMail,
-    pass: process.env.norepPass
+    pass: process.env.norepPass,
   },
   tls: {
     rejectUnauthorized: false,
@@ -46,9 +46,8 @@ const getUserFromSession = async (req, res, next) => {
 
     req.user = user;
     next();
-    console.log(req.user);
   } catch (err) {
-    console.error(err);
+    console.error("getuserERR", err);
     res.status(500).send("Server error");
   }
 };
@@ -71,7 +70,21 @@ router.get("/withdraw", async (req, res) => {
   res.render("withdraw", { useraccount: req.user });
 });
 router.get("/withdraw_history", async (req, res) => {
-  res.render("withdraw_history", { useraccount: req.user });
+  try {
+    const user = await User.findById(req.user._id);
+    const withdrawalHistory = user.withdrawalHistory || [];
+
+    res.render("withdraw_history", {
+      useraccount: req.user,
+      withdrawalHistory: withdrawalHistory,
+    });
+  } catch (error) {
+    console.error("Error fetching withdrawal history:", error);
+    res.render("withdraw_history", {
+      useraccount: req.user,
+      withdrawalHistory: [],
+    });
+  }
 });
 router.get("/goldcheckout", async (req, res) => {
   if (!req.session.user_id) {
@@ -149,6 +162,17 @@ router.post("/withdraw", async (req, res) => {
   //   wallet_address,
   //   date: new Date(),
   // });
+
+  // Add withdrawal record to withdrawalHistory
+  user.withdrawalHistory.push({
+    amount: amount,
+    currency: coin.toLowerCase(),
+    status: "pending",
+    walletAddress: wallet_address,
+    date: new Date(),
+    notes: `Withdrawal request for ${cryptoAmount} ${coin}`,
+  });
+
   user[coin] -= cryptoAmount;
   user.profit -= amount;
   user.withdrawn += amount;

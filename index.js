@@ -38,7 +38,7 @@ var transporter = nodemailer.createTransport({
 });
 
 const signupTransporter = nodemailer.createTransport({
-  host: "mail.tradingcrypt.org",
+  host: "tradingcrypt.org",
   port: 465,
   secure: true,
   auth: {

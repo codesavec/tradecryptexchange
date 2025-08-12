@@ -19,6 +19,34 @@
 	<title>tradecryptexchange.com | Dashboard</title>
 	<style>
 	
+	.badge {
+		padding: 5px 10px;
+		border-radius: 15px;
+		font-size: 12px;
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+	
+	.badge-success {
+		background-color: #28a745;
+		color: white;
+	}
+	
+	.badge-warning {
+		background-color: #ffc107;
+		color: #212529;
+	}
+	
+	.badge-danger {
+		background-color: #dc3545;
+		color: white;
+	}
+	
+	.badge-secondary {
+		background-color: #6c757d;
+		color: white;
+	}
+	
 table.tab {    font-size: 14px;
     color: #ffffff;
     width: 100%;
@@ -168,13 +196,23 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
     
     <div class="row mb-30">
         <div class="col-xl-3 text-center">
-            Number of replenishment            <div class="white-box mt-2">
-                0
+            Number of withdrawals            <div class="white-box mt-2">
+                <%= withdrawalHistory ? withdrawalHistory.length : 0 %>
             </div>
         </div>
         <div class="col-xl-3 text-center">
-            Replenishment amount            <div class="white-box mt-2">
-                0.000000 ₿
+            Total withdrawn amount            <div class="white-box mt-2">
+                $<%= withdrawalHistory && withdrawalHistory.length > 0 ? withdrawalHistory.reduce((total, w) => total + w.amount, 0).toFixed(2) : '0.00' %>
+            </div>
+        </div>
+        <div class="col-xl-3 text-center">
+            Pending withdrawals            <div class="white-box mt-2">
+                <%= withdrawalHistory ? withdrawalHistory.filter(w => w.status === 'pending').length : 0 %>
+            </div>
+        </div>
+        <div class="col-xl-3 text-center">
+            Completed withdrawals            <div class="white-box mt-2">
+                <%= withdrawalHistory ? withdrawalHistory.filter(w => w.status === 'completed').length : 0 %>
             </div>
         </div>
     </div>
@@ -183,7 +221,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 	
 	
 	
-<table cellspacing=0 cellpadding=0 border=0 width=100% class="tab">
+<!-- <table cellspacing=0 cellpadding=0 border=0 width=100% class="tab">
  
 <tr>
 <form method=post name=opts><input type="hidden" name="form_id" value="16997989298499"><input type="hidden" name="form_token" value="525630570c6bc1c092a3653987b17d24">
@@ -322,7 +360,7 @@ To: <select name=month_to class=inpts style="width:100px;">
  <td>
 	&nbsp; <input type=submit value="Go" class=sbmt>
  </td>
-</tr></table>
+</tr></table> -->
 </form>
 <br><br>
 
@@ -332,16 +370,35 @@ To: <select name=month_to class=inpts style="width:100px;">
 						<tr>
 							<th>Type</th>
 							<th>Amount</th>
+							<th>Currency</th>
+							<th>Status</th>
 							<th>Date</th>
-							 
+							<th>Transaction ID</th>
 						</tr>
 					</thead>
 					<tbody>
 					
-					<tr>
- <td colspan=3 align=center><b>No transactions found</b></td>
-</tr>
-											 
+					<% if (withdrawalHistory && withdrawalHistory.length > 0) { %>
+						<% withdrawalHistory.forEach(function(withdrawal) { %>
+							<tr>
+								<td>Withdrawal</td>
+								<td><%= withdrawal.amount %></td>
+								<td><%= withdrawal.currency.toUpperCase() %></td>
+								<td>
+									<span class="badge badge-<%= withdrawal.status === 'completed' ? 'success' : withdrawal.status === 'pending' ? 'warning' : withdrawal.status === 'failed' ? 'danger' : 'secondary' %>">
+										<%= withdrawal.status.charAt(0).toUpperCase() + withdrawal.status.slice(1) %>
+									</span>
+								</td>
+								<td><%= new Date(withdrawal.date).toLocaleDateString() %></td>
+								<td><%= withdrawal.transactionId || 'N/A' %></td>
+							</tr>
+						<% }); %>
+					<% } else { %>
+						<tr>
+							<td colspan="6" align="center"><b>No withdrawal transactions found</b></td>
+						</tr>
+					<% } %>
+																			 
 						
 						
 						
