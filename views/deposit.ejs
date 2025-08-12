@@ -89,7 +89,14 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 				<a class="dropdown-item" href="/security">Security</a>
 				</div
 			</li>
-			<li class="nav-item"><a href="/account/deposit"><span></span>Make Deposit</a></li>
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="depositDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Deposit</a>
+
+				<div class="dropdown-menu" aria-labelledby="depositDropdown">
+				<a class="dropdown-item" href="/account/deposit">Make Deposit</a>
+				<a class="dropdown-item" href="/account/deposit_history">Deposit History</a>
+				</div
+			</li>
 			
 			<li class="nav-item dropdown">
 				<a class="dropdown-toggle" id="walletDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Withdraw</a>
@@ -549,6 +556,9 @@ function copyToClipboard(element) {
 </div>
 
 
+	<div class="text-center mt-4 mb-4">
+		<a class="btn-bordered" href="/account/withdraw_history">View Withdrawal History</a>
+	</div>
 </div>
 </div>
 </div>

@@ -50,7 +50,6 @@ const signupTransporter = nodemailer.createTransport({
   },
 });
 
-
 app.use(
   session({
     secret: "dashboard",
@@ -316,6 +315,25 @@ app.post("/admin/update", async (req, res) => {
     req.body;
   console.log(req.body);
   try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    // If there's a new deposit, add it to deposit history
+    if (lastdeposit && lastdeposit > 0) {
+      const depositRecord = {
+        amount: lastdeposit,
+        currency: "usd",
+        status: "completed",
+        date: new Date(),
+        paymentMethod: "Admin Update",
+        notes: "Deposit processed by admin",
+      };
+
+      user.depositHistory.push(depositRecord);
+    }
+
     await User.findByIdAndUpdate(userId, {
       lastdeposit,
       bitcoin,
@@ -323,6 +341,7 @@ app.post("/admin/update", async (req, res) => {
       litecoin,
       usdt,
       withdrawn,
+      depositHistory: user.depositHistory,
     });
     res.redirect("/admin");
   } catch (err) {
@@ -332,8 +351,6 @@ app.post("/admin/update", async (req, res) => {
 });
 
 // Reusable email-sending function
-
-
 
 app.post("/admin/delete", async (req, res) => {
   const userId = req.body;

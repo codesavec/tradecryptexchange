@@ -85,14 +85,21 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 	<ul class="navbar-nav">
 		<li class="nav-item"><a href="/account"><span></span> Dashboard</a></li>
 	
-			<li class="nav-item"><a href="/account/deposit/"><span></span>Make Deposit</a></li>
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="depositDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Deposit</a>
+
+				<div class="dropdown-menu" aria-labelledby="depositDropdown">
+				<a class="dropdown-item" href="/account/deposit">Make Deposit</a>
+				<a class="dropdown-item" href="/account/deposit_history">Deposit History</a>
+				</div
+			</li>
 			
 			<li class="nav-item dropdown">
 				<a class="dropdown-toggle" id="walletDropdown" role="button" data-toggle="dropdown" ><span></span> Withdraw</a>
 
 				<div class="dropdown-menu" aria-labelledby="walletDropdown">
 				<a class="dropdown-item" href="/account/withdraw">Make Withdrawal</a>
-				 
+				<a class="dropdown-item" href="/account/withdraw_history">Withdrawal History</a>
 				</div
 			</li>
 			
@@ -321,6 +328,7 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 					Last Deposit		            <div class="white-box mt-2 mb-4">
 		               $ <%= useraccount.lastdeposit  %>		            </div>
 		            <a class="btn-fill text-center" href="/account/deposit">Create deposit</a>
+		            <a class="btn-bordered text-center mt-2" href="/account/deposit_history">Deposit History</a>
 				</div>
 
 				<div class="col-xl-6">

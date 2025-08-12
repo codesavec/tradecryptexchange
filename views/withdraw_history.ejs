@@ -158,15 +158,22 @@ table.blank td {font-size:14px;border-width: 0px;padding: 8px;border-style: soli
 				<a class="dropdown-item" href="/security">Security</a>
 				</div
 			</li>
-			<li class="nav-item"><a href="/deposit"><span></span>Make Deposit</a></li>
+			<li class="nav-item dropdown">
+				<a class="dropdown-toggle" id="depositDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Deposit</a>
+
+				<div class="dropdown-menu" aria-labelledby="depositDropdown">
+				<a class="dropdown-item" href="/account/deposit">Make Deposit</a>
+				<a class="dropdown-item" href="/account/deposit_history">Deposit History</a>
+				</div
+			</li>
 			
 			<li class="nav-item dropdown">
 				<a class="dropdown-toggle" id="walletDropdown" role="button" data-toggle="dropdown" href="#"><span></span> Withdraw</a>
 
 				<div class="dropdown-menu" aria-labelledby="walletDropdown">
-				<a class="dropdown-item" href="/withdraw">Make Withdrawal</a>
+				<a class="dropdown-item" href="/account/withdraw">Make Withdrawal</a>
 				 
-				<a class="dropdown-item" href="/withdraw_history">Withdrawal History</a>
+				<a class="dropdown-item" href="/account/withdraw_history">Withdrawal History</a>
 				</div
 			</li>
 			<li class="nav-item dropdown">
@@ -407,6 +414,9 @@ To: <select name=month_to class=inpts style="width:100px;">
 				</table>
  
 
+	<div class="text-center mt-4 mb-4">
+		<a class="btn-bordered" href="/account/deposit_history">View Deposit History</a>
+	</div>
 </div>
 
 

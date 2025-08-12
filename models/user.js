@@ -97,6 +97,40 @@ const UserSchema = new mongoose.Schema({
       },
     },
   ],
+  depositHistory: [
+    {
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
+      currency: {
+        type: String,
+        enum: ["bitcoin", "ethereum", "litecoin", "usdt", "usd"],
+        default: "usd",
+      },
+      status: {
+        type: String,
+        enum: ["pending", "completed", "failed", "cancelled"],
+        default: "pending",
+      },
+      transactionId: {
+        type: String,
+        required: false,
+      },
+      paymentMethod: {
+        type: String,
+        required: false,
+      },
+      notes: {
+        type: String,
+        required: false,
+      },
+    },
+  ],
   token: {
     type: String,
     required: false,

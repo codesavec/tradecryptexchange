@@ -86,6 +86,61 @@ router.get("/withdraw_history", async (req, res) => {
     });
   }
 });
+
+router.get("/api/withdraw_history", async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    const withdrawalHistory = user.withdrawalHistory || [];
+
+    res.json({
+      success: true,
+      data: withdrawalHistory,
+    });
+  } catch (error) {
+    console.error("Error fetching withdrawal history:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching withdrawal history",
+    });
+  }
+});
+
+router.get("/deposit_history", async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    const depositHistory = user.depositHistory || [];
+
+    res.render("deposit_history", {
+      useraccount: req.user,
+      depositHistory: depositHistory,
+    });
+  } catch (error) {
+    console.error("Error fetching deposit history:", error);
+    res.render("deposit_history", {
+      useraccount: req.user,
+      depositHistory: [],
+    });
+  }
+});
+
+router.get("/api/deposit_history", async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    const depositHistory = user.depositHistory || [];
+
+    res.json({
+      success: true,
+      data: depositHistory,
+    });
+  } catch (error) {
+    console.error("Error fetching deposit history:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching deposit history",
+    });
+  }
+});
+
 router.get("/goldcheckout", async (req, res) => {
   if (!req.session.user_id) {
     res.redirect("/login");
@@ -208,6 +263,121 @@ router.post("/withdraw", async (req, res) => {
     res
       .status(500)
       .json({ message: "Error processing withdrawal request", error });
+  }
+});
+
+router.post("/withdraw/:withdrawalId/status", async (req, res) => {
+  try {
+    const { withdrawalId } = req.params;
+    const { status, notes } = req.body;
+
+    if (!["pending", "completed", "failed", "cancelled"].includes(status)) {
+      return res.status(400).json({ message: "Invalid status" });
+    }
+
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const withdrawal = user.withdrawalHistory.id(withdrawalId);
+    if (!withdrawal) {
+      return res.status(404).json({ message: "Withdrawal not found" });
+    }
+
+    withdrawal.status = status;
+    if (notes) {
+      withdrawal.notes = notes;
+    }
+
+    await user.save();
+
+    res.json({
+      message: "Withdrawal status updated successfully",
+      status: withdrawal.status,
+    });
+  } catch (error) {
+    console.error("Error updating withdrawal status:", error);
+    res.status(500).json({ message: "Error updating withdrawal status" });
+  }
+});
+
+router.post("/deposit", async (req, res) => {
+  try {
+    const userId = req.user._id;
+    let { amount, coin, paymentMethod, notes } = req.body;
+    amount = parseFloat(amount);
+
+    if (!amount || amount <= 0) {
+      return res.status(400).json({ message: "Invalid amount" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Add deposit record to depositHistory
+    const depositRecord = {
+      amount: amount,
+      currency: coin.toLowerCase() || "usd",
+      status: "pending",
+      date: new Date(),
+      paymentMethod: paymentMethod || "Manual Deposit",
+      notes: notes || "User deposit request",
+    };
+
+    user.depositHistory.push(depositRecord);
+
+    // Update user's deposit total
+    user.deposit += amount;
+    user.lastdeposit = amount;
+
+    await user.save();
+
+    res.json({
+      message: "Deposit request submitted successfully",
+      depositId: depositRecord._id,
+    });
+  } catch (error) {
+    console.error("Error processing deposit:", error);
+    res.status(500).json({ message: "Error processing deposit request" });
+  }
+});
+
+router.post("/deposit/:depositId/status", async (req, res) => {
+  try {
+    const { depositId } = req.params;
+    const { status, notes } = req.body;
+
+    if (!["pending", "completed", "failed", "cancelled"].includes(status)) {
+      return res.status(400).json({ message: "Invalid status" });
+    }
+
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const deposit = user.depositHistory.id(depositId);
+    if (!deposit) {
+      return res.status(404).json({ message: "Deposit not found" });
+    }
+
+    deposit.status = status;
+    if (notes) {
+      deposit.notes = notes;
+    }
+
+    await user.save();
+
+    res.json({
+      message: "Deposit status updated successfully",
+      status: deposit.status,
+    });
+  } catch (error) {
+    console.error("Error updating deposit status:", error);
+    res.status(500).json({ message: "Error updating deposit status" });
   }
 });
 
