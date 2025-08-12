@@ -43,26 +43,60 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  bitcoin:{
+  bitcoin: {
     type: Number,
-    default: 0
+    default: 0,
   },
   ethereum: {
-    type: Number, 
-    default: 0
-  },
-  litecoin:{
     type: Number,
-    default: 0
+    default: 0,
+  },
+  litecoin: {
+    type: Number,
+    default: 0,
   },
   usdt: {
     type: Number,
-    default:0
+    default: 0,
   },
-  withdrawn:{
+  withdrawn: {
     type: Number,
-    default: 0
+    default: 0,
   },
+  withdrawalHistory: [
+    {
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
+      currency: {
+        type: String,
+        enum: ["bitcoin", "ethereum", "litecoin", "usdt", "usd"],
+        default: "usd",
+      },
+      status: {
+        type: String,
+        enum: ["pending", "completed", "failed", "cancelled"],
+        default: "pending",
+      },
+      transactionId: {
+        type: String,
+        required: false,
+      },
+      walletAddress: {
+        type: String,
+        required: false,
+      },
+      notes: {
+        type: String,
+        required: false,
+      },
+    },
+  ],
   token: {
     type: String,
     required: false,
@@ -137,7 +171,6 @@ UserSchema.pre("findOneAndUpdate", async function (next) {
 
   next();
 });
-
 
 const User = mongoose.model("User", UserSchema);
 
