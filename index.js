@@ -50,6 +50,7 @@ const signupTransporter = nodemailer.createTransport({
   },
 });
 
+
 app.use(
   session({
     secret: "dashboard",
@@ -104,8 +105,8 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  console.log(email, password);
+  let { email, password } = req.body;
+  email= email.toLowerCase()
   const user = await User.findOne({ email, password });
   req.app.set("email", email);
 
@@ -180,7 +181,8 @@ app.get("/signup", async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  const { fullname, username, email, password, dob, phoneNo } = req.body;
+  let { fullname, username, email, password, dob, phoneNo } = req.body;
+  email = email.toLowerCase()
   function generateSignupToken() {
     return Math.floor(
       100000 + (crypto.randomBytes(3).readUIntBE(0, 3) % 900000)
@@ -315,25 +317,6 @@ app.post("/admin/update", async (req, res) => {
     req.body;
   console.log(req.body);
   try {
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).send("User not found");
-    }
-
-    // If there's a new deposit, add it to deposit history
-    if (lastdeposit && lastdeposit > 0) {
-      const depositRecord = {
-        amount: lastdeposit,
-        currency: "usd",
-        status: "completed",
-        date: new Date(),
-        paymentMethod: "Admin Update",
-        notes: "Deposit processed by admin",
-      };
-
-      user.depositHistory.push(depositRecord);
-    }
-
     await User.findByIdAndUpdate(userId, {
       lastdeposit,
       bitcoin,
@@ -341,7 +324,6 @@ app.post("/admin/update", async (req, res) => {
       litecoin,
       usdt,
       withdrawn,
-      depositHistory: user.depositHistory,
     });
     res.redirect("/admin");
   } catch (err) {
@@ -351,6 +333,8 @@ app.post("/admin/update", async (req, res) => {
 });
 
 // Reusable email-sending function
+
+
 
 app.post("/admin/delete", async (req, res) => {
   const userId = req.body;
@@ -363,10 +347,16 @@ app.post("/admin/delete", async (req, res) => {
   }
 });
 
-app.delete("/del/users", async (req, res) => {
+app.post("/del/users", async (req, res) => {
   try {
-    const result = await User.find(); // Delete all users where verified is false
-    res.json(result);
+const users = await User.find();
+
+for (const user of users) {
+  user.email = user.email.toLowerCase();
+  await user.save();
+  console.log(user)
+}
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error deleting users" });
