@@ -3,7 +3,6 @@ const axios = require("axios");
 const UserSchema = new mongoose.Schema({
   fullname: {
     type: String,
-    unique: true,
     required: true,
   },
   username: {
